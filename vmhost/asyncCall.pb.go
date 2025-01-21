@@ -1113,10 +1113,7 @@ func (m *SerializableAsyncCall) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if skippy < 0 {
-				return ErrInvalidLengthAsyncCall
-			}
-			if (iNdEx + skippy) < 0 {
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
 				return ErrInvalidLengthAsyncCall
 			}
 			if (iNdEx + skippy) > l {
@@ -1317,10 +1314,7 @@ func (m *SerializableAsyncCallGroup) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if skippy < 0 {
-				return ErrInvalidLengthAsyncCall
-			}
-			if (iNdEx + skippy) < 0 {
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
 				return ErrInvalidLengthAsyncCall
 			}
 			if (iNdEx + skippy) > l {
