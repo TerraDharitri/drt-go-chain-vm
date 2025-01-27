@@ -102,6 +102,7 @@ func TestBigIntArith(t *testing.T) {
 
 	big1, _ := big.NewInt(0).SetString("18446744073709551616", 10)
 	big2, _ := big.NewInt(0).SetString("-123456789012345678901234567890", 10)
+
 	numbers := []*big.Int{
 		big.NewInt(0),
 		big.NewInt(1),
