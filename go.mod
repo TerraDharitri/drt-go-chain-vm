@@ -1,6 +1,6 @@
 module github.com/TerraDharitri/drt-go-chain-vm
 
-go 1.20
+go 1.22.2
 
 require (
 	github.com/TerraDharitri/drt-go-bigint v0.0.1
@@ -39,5 +39,3 @@ require (
 	google.golang.org/protobuf v1.33.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
-
-replace github.com/gogo/protobuf => github.com/TerraDharitri/protobuf v0.0.1

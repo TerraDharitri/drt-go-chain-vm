@@ -166,7 +166,6 @@ func (pfe *pureFunctionExecutor) executePureFunctionTests(t *testing.T,
 
 		output, err := pfe.scCall(testCase)
 		require.Nil(t, err)
-
 		err = pfe.checkTxResults(testCase, output, resultInterpreter)
 		require.Nil(t, err)
 	}
