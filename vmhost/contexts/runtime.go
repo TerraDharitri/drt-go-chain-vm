@@ -236,6 +236,7 @@ func (context *runtimeContext) makeInstanceFromContractByteCode(contract []byte,
 	}
 	newInstance, err := context.vmExecutor.NewInstanceWithOptions(contract, options)
 	if err != nil {
+		fmt.Print("Errorddddddddddddddddddddddd %w", err)
 		context.iTracker.UnsetInstance()
 		logRuntime.Trace("instance creation", "from", "bytecode", "error", err)
 		return err

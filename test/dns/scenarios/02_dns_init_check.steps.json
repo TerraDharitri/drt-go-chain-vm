@@ -6,25 +6,26 @@
             "accounts": {
                 "address:viewer": {
                     "nonce": "0",
-                    "balance": "0"
+                    "balance": "0",
+                    "storage": {},
+                    "code": ""
                 }
             }
         },
         {
             "step": "scCall",
-            "id": "check-version",
+            "txId": "check-version",
             "tx": {
                 "from": "address:viewer",
                 "to": "sc:dns#00",
+                "value": "0",
                 "function": "version",
                 "arguments": [],
                 "gasLimit": "50,000,000",
                 "gasPrice": "0"
             },
             "expect": {
-                "out": [
-                    "''1.1.0"
-                ],
+                "out": [ "''1.1.0" ],
                 "status": "",
                 "logs": "*",
                 "gas": "*",
@@ -33,19 +34,18 @@
         },
         {
             "step": "scCall",
-            "id": "check-owner",
+            "txId": "check-owner",
             "tx": {
                 "from": "address:viewer",
                 "to": "sc:dns#00",
+                "value": "0",
                 "function": "getContractOwner",
                 "arguments": [],
                 "gasLimit": "50,000,000",
                 "gasPrice": "0"
             },
             "expect": {
-                "out": [
-                    "address:dns_owner"
-                ],
+                "out": [ "address:dns_owner" ],
                 "status": "",
                 "logs": "*",
                 "gas": "*",

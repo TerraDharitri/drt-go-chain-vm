@@ -3,10 +3,11 @@
     "steps": [
         {
             "step": "scCall",
-            "id": "claim",
+            "txId": "claim",
             "tx": {
                 "from": "address:dns_owner",
                 "to": "sc:dns#87",
+                "value": "0",
                 "function": "claim",
                 "arguments": [],
                 "gasLimit": "50,000,000",
@@ -17,16 +18,14 @@
                 "status": "",
                 "logs": [
                     {
-                        "address": "sc:dns#87",
+                        "address": "*",
                         "endpoint": "str:transferValueOnly",
-                        "topics": [                            
-                            "123,000",
-                            "address:dns_owner"
+                        "topics": [
+                            "sc:dns#87",
+                            "address:dns_owner",
+                            "123,000"
                         ],
-                        "data": [
-                            "str:DirectCall",
-                            "str:dns claim"
-                        ]
+                        "data": ""
                     }
                 ],
                 "gas": "*",

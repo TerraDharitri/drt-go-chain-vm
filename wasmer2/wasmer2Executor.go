@@ -1,6 +1,7 @@
 package wasmer2
 
 import (
+	"fmt"
 	"unsafe"
 
 	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
@@ -81,6 +82,7 @@ func (wasmerExecutor *Wasmer2Executor) NewInstanceWithOptions(
 	if len(contractCode) == 0 {
 		return nil, newWrappedError(ErrInvalidBytecode)
 	}
+	fmt.Print(len(contractCode))
 
 	cOptions := unsafe.Pointer(&options)
 	var compileResult = cWasmerInstantiateWithOptions(
