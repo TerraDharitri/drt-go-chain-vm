@@ -9,6 +9,7 @@ package wasmer2
 //
 import "C"
 import (
+	"fmt"
 	"unsafe"
 )
 
@@ -129,6 +130,7 @@ func cWasmerInstantiateWithOptions(
 	wasmBytesLength cUint,
 	options *cWasmerCompilationOptions,
 ) cWasmerResultT {
+	fmt.Print(executor, instance, wasmBytes, wasmBytesLength, options)
 	return (cWasmerResultT)(C.vm_exec_new_instance(
 		(*C.vm_exec_executor_t)(executor),
 		(**C.vm_exec_instance_t)(unsafe.Pointer(instance)),

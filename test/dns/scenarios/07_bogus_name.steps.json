@@ -3,13 +3,14 @@
     "steps": [
         {
             "step": "scCall",
-            "id": "bogus-name",
+            "txId": "bogus-name",
             "tx": {
                 "from": "address:viewer",
                 "to": "sc:dns#bb",
+                "value": "0",
                 "function": "resolve",
                 "arguments": [
-                    "str:bogusname000.|0x6e756d626174"
+                    "str:bogusname000.numbat"
                 ],
                 "gasLimit": "50,000,000",
                 "gasPrice": "0"

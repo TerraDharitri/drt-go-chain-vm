@@ -1,11 +1,11 @@
 {
     "buildInfo": {
         "rustc": {
-            "version": "1.80.1",
-            "commitHash": "3f5fd8dd41153bc5fdca9427e9e05be2c767ba23",
-            "commitDate": "2024-08-06",
+            "version": "1.84.1",
+            "commitHash": "e71f9a9a98b0faf423844bf0ba7438f29dc27d58",
+            "commitDate": "2025-01-27",
             "channel": "Stable",
-            "short": "rustc 1.80.1 (3f5fd8dd4 2024-08-06)"
+            "short": "rustc 1.84.1 (e71f9a9a9 2025-01-27)"
         },
         "contractCrate": {
             "name": "basic-features",
@@ -267,7 +267,7 @@
             "path": "../output/basic-features-storage-bytes.wasm",
             "size": 538,
             "hasAllocator": false,
-            "hasPanic": "none"
+            "hasPanic": "None"
         }
     }
 }
