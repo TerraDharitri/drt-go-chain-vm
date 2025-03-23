@@ -3,10 +3,10 @@ package vmhooks
 import (
 	"math/big"
 
-	twos "github.com/TerraDharitri/drt-go-bigint/twos-complement"
 	"github.com/TerraDharitri/drt-go-chain-vm/executor"
 	"github.com/TerraDharitri/drt-go-chain-vm/math"
 	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	twos "github.com/TerraDharitri/drt-go-bigint/twos-complement"
 )
 
 const (

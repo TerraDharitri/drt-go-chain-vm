@@ -2,7 +2,6 @@ package contexts
 
 import (
 	"errors"
-
 	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
 	"github.com/TerraDharitri/drt-go-chain-core/marshal"
 	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"

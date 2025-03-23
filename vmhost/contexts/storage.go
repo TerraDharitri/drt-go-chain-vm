@@ -3,7 +3,6 @@ package contexts
 import (
 	"bytes"
 	"fmt"
-
 	"github.com/TerraDharitri/drt-go-chain-core/core"
 
 	"github.com/TerraDharitri/drt-go-chain-core/core/check"

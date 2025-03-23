@@ -1,0 +1,20 @@
+[
+  "checkNoPayment",
+  "getNumArguments",
+  "mBufferAppend",
+  "mBufferAppendBytes",
+  "mBufferFinish",
+  "mBufferGetArgument",
+  "mBufferGetByteSlice",
+  "mBufferGetLength",
+  "mBufferSetBytes",
+  "mBufferStorageLoad",
+  "managedMapContains",
+  "managedMapGet",
+  "managedMapNew",
+  "managedMapPut",
+  "managedMapRemove",
+  "managedSignalError",
+  "signalError",
+  "smallIntFinishSigned"
+]

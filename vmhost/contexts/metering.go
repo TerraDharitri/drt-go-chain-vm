@@ -2,7 +2,6 @@ package contexts
 
 import (
 	"fmt"
-
 	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
 	logger "github.com/TerraDharitri/drt-go-chain-logger"

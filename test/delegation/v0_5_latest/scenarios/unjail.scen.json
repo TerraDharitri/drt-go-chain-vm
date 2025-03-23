@@ -43,7 +43,7 @@
             "step": "transfer",
             "id": "supply node address",
             "tx": {
-                "from": "address:endless_sack_of_drt",
+                "from": "address:endless_sack_of_rewa",
                 "to": "address:node_address",
                 "rewaValue": "1,000,000,000"
             }

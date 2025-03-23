@@ -12,4 +12,4 @@
   (global (;0;) (mut i32) (i32.const 66560))
   (export "memory" (memory 0))
   (export "init" (func 1))
-  (export "answer" (func 2)))
+	(export "answer" (func 2)))

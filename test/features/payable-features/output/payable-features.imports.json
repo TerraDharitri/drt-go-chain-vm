@@ -1,0 +1,21 @@
+[
+  "bigIntAdd",
+  "bigIntFinishUnsigned",
+  "bigIntGetCallValue",
+  "bigIntSetInt64",
+  "bigIntSign",
+  "checkNoPayment",
+  "finish",
+  "getNumArguments",
+  "mBufferAppend",
+  "mBufferAppendBytes",
+  "mBufferEq",
+  "mBufferFinish",
+  "mBufferFromBigIntUnsigned",
+  "mBufferGetByteSlice",
+  "mBufferGetLength",
+  "mBufferNew",
+  "mBufferSetBytes",
+  "managedGetMultiDCDTCallValue",
+  "signalError"
+]

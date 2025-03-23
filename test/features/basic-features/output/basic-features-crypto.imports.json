@@ -1,0 +1,16 @@
+[
+  "checkNoPayment",
+  "getNumArguments",
+  "mBufferAppendBytes",
+  "mBufferCopyByteSlice",
+  "mBufferGetArgument",
+  "mBufferGetByteSlice",
+  "mBufferGetLength",
+  "mBufferNew",
+  "mBufferSetBytes",
+  "managedSignalError",
+  "managedVerifyBLSAggregatedSignature",
+  "managedVerifyBLSSignatureShare",
+  "managedVerifySecp256r1",
+  "signalError"
+]

@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"reflect"
 
+	"github.com/mitchellh/mapstructure"
 	logger "github.com/TerraDharitri/drt-go-chain-logger"
 	"github.com/TerraDharitri/drt-go-chain-vm/executor"
-	"github.com/mitchellh/mapstructure"
 )
 
 // GasValueForTests defines the gas value for tests

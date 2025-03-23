@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/mitchellh/mapstructure"
 	"github.com/TerraDharitri/drt-go-chain-vm/executor"
+	"github.com/mitchellh/mapstructure"
 	"github.com/stretchr/testify/assert"
 )
 
