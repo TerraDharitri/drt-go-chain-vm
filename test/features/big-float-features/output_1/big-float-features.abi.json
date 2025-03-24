@@ -1,0 +1,1390 @@
+{
+    "buildInfo": {
+        "rustc": {
+            "version": "1.84.1",
+            "commitHash": "e71f9a9a98b0faf423844bf0ba7438f29dc27d58",
+            "commitDate": "2025-01-27",
+            "channel": "Stable",
+            "short": "rustc 1.84.1 (e71f9a9a9 2025-01-27)"
+        },
+        "contractCrate": {
+            "name": "big-float-features",
+            "version": "0.0.0"
+        },
+        "framework": {
+            "name": "dharitri-sc",
+            "version": "1.0.1"
+        }
+    },
+    "name": "BigFloatFeatures",
+    "constructor": {
+        "inputs": [],
+        "outputs": []
+    },
+    "endpoints": [
+        {
+            "name": "new_from_parts_big_float",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "integral_part_value",
+                    "type": "i32"
+                },
+                {
+                    "name": "fractional_part_value",
+                    "type": "i32"
+                },
+                {
+                    "name": "exponent_value",
+                    "type": "i32"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "new_from_frac_big_float",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "numerator_value",
+                    "type": "i64"
+                },
+                {
+                    "name": "denominator_value",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "new_from_sci_big_float",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "significand_value",
+                    "type": "i64"
+                },
+                {
+                    "name": "exponent_value",
+                    "type": "i32"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_big_uint_1",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "bi",
+                    "type": "BigUint"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_big_uint_2",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "bi",
+                    "type": "BigUint"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_big_int_1",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "bi",
+                    "type": "BigInt"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_big_int_2",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "bi",
+                    "type": "BigInt"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_i64",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "small_value",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_i32",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "small_value",
+                    "type": "i16"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_i16",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "small_value",
+                    "type": "i32"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_i8",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "small_value",
+                    "type": "i8"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_isize",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "small_value",
+                    "type": "i32"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_man_buf",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "man_buf",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_man_buf_ref",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "man_buf",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "sqrt_big_float",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "sqrt_big_float_ref",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "pow_big_float",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                },
+                {
+                    "name": "b",
+                    "type": "i32"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "pow_big_float_ref",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                },
+                {
+                    "name": "b",
+                    "type": "i32"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "big_float_zero",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "big_float_neg",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "add_big_float",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                },
+                {
+                    "name": "b",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "add_big_float_ref",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                },
+                {
+                    "name": "b",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "sub_big_float",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                },
+                {
+                    "name": "b",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "sub_big_float_ref",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                },
+                {
+                    "name": "b",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "mul_big_float",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                },
+                {
+                    "name": "b",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "mul_big_float_ref",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                },
+                {
+                    "name": "b",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "div_big_float",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                },
+                {
+                    "name": "b",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "div_big_float_ref",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                },
+                {
+                    "name": "b",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "add_assign_big_float",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                },
+                {
+                    "name": "b",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "add_assign_big_float_ref",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                },
+                {
+                    "name": "b",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "sub_assign_big_float",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                },
+                {
+                    "name": "b",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "sub_assign_big_float_ref",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                },
+                {
+                    "name": "b",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "mul_assign_big_float",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                },
+                {
+                    "name": "b",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "mul_assign_big_float_ref",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                },
+                {
+                    "name": "b",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "div_assign_big_float",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                },
+                {
+                    "name": "b",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "div_assign_big_float_ref",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                },
+                {
+                    "name": "b",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "new_from_parts_big_float_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "integral_part_value",
+                    "type": "i32"
+                },
+                {
+                    "name": "fractional_part_value",
+                    "type": "i32"
+                },
+                {
+                    "name": "exponent_value",
+                    "type": "i32"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "new_from_frac_big_float_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "numerator_value",
+                    "type": "i64"
+                },
+                {
+                    "name": "denominator_value",
+                    "type": "i64"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "new_from_sci_big_float_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "significand_value",
+                    "type": "i64"
+                },
+                {
+                    "name": "exponent_value",
+                    "type": "i32"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_big_int_1_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "bi",
+                    "type": "BigInt"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_big_int_2_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "bi",
+                    "type": "BigInt"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_big_uint_1_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "bu",
+                    "type": "BigUint"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_big_uint_2_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "bu",
+                    "type": "BigUint"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_i64_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "small_value",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_i32_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "small_value",
+                    "type": "i32"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_i16_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "small_value",
+                    "type": "i16"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_i8_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "small_value",
+                    "type": "i8"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "big_float_from_isize_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "small_value",
+                    "type": "i32"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "sqrt_big_float_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "sqrt_big_float_ref_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "pow_big_float_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "b",
+                    "type": "i32"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "pow_big_float_ref_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "b",
+                    "type": "i32"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "big_float_zero_wrapped",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "big_float_neg_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "ln_big_float_ref",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigFloat"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigFloat"
+                }
+            ]
+        },
+        {
+            "name": "ln_big_float_precision_9",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "ManagedDecimalSigned<9>"
+                }
+            ]
+        },
+        {
+            "name": "ln_big_float_any_precision",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "precision",
+                    "type": "u32"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "ManagedDecimalSigned<usize>"
+                }
+            ]
+        },
+        {
+            "name": "add_big_float_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "b",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "add_big_float_ref_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "b",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "sub_big_float_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "b",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "sub_big_float_ref_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "b",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "mul_big_float_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "b",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "mul_big_float_ref_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "b",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "div_big_float_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "b",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "div_big_float_ref_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "b",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "add_assign_big_float_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "b",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "add_assign_big_float_ref_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "b",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "sub_assign_big_float_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "b",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "sub_assign_big_float_ref_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "b",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "mul_assign_big_float_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "b",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "mul_assign_big_float_ref_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "b",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "div_assign_big_float_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "b",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        },
+        {
+            "name": "div_assign_big_float_ref_wrapped",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "a",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "b",
+                    "type": "BigInt"
+                },
+                {
+                    "name": "fixed_point_denominator",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "BigInt"
+                }
+            ]
+        }
+    ],
+    "dcdtAttributes": [],
+    "hasCallback": false,
+    "types": {}
+}

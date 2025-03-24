@@ -1,0 +1,246 @@
+{
+    "buildInfo": {
+        "rustc": {
+            "version": "1.85.0",
+            "commitHash": "4d91de4e48198da2e33413efdcd9cd2cc0c46688",
+            "commitDate": "2025-02-17",
+            "channel": "Stable",
+            "short": "rustc 1.85.0 (4d91de4e4 2025-02-17)"
+        },
+        "contractCrate": {
+            "name": "formatted-message-features",
+            "version": "0.0.0"
+        },
+        "framework": {
+            "name": "dharitri-sc",
+            "version": "1.0.1"
+        }
+    },
+    "name": "FormattedMessageFeatures",
+    "constructor": {
+        "inputs": [],
+        "outputs": []
+    },
+    "endpoints": [
+        {
+            "name": "static_message",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "dynamic_message",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "bytes",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "dynamic_message_hex",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "bytes",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "dynamic_message_multiple",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "*"
+            ],
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "dynamic_message_ascii",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "*"
+            ],
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "decode_error_message",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "docs": [
+                "TODO: figure out a way to test this."
+            ],
+            "name": "print_message",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "x",
+                    "type": "i32"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "print_message_hex",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "x",
+                    "type": "i32"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "print_message_binary",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "x",
+                    "type": "u32"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "print_message_codec",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "x",
+                    "type": "i32"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "print_message_bytes",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "x",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "print_message_hex_bytes",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "x",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "print_message_binary_bytes",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "x",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "format_message_one_part",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "bytes"
+                }
+            ]
+        },
+        {
+            "name": "format_message_multiple_parts",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "x",
+                    "type": "i32"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "bytes"
+                }
+            ]
+        },
+        {
+            "name": "format_message_big_int",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "x",
+                    "type": "BigInt"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "bytes"
+                }
+            ]
+        },
+        {
+            "name": "format_message_i64",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "x",
+                    "type": "i64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "bytes"
+                }
+            ]
+        },
+        {
+            "name": "format_message_managed_buffer",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "x",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "bytes"
+                }
+            ]
+        },
+        {
+            "name": "format_message_managed_buffer_hex",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "x",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "bytes"
+                }
+            ]
+        }
+    ],
+    "dcdtAttributes": [],
+    "hasCallback": false,
+    "types": {}
+}

@@ -174,6 +174,9 @@ func (mtb *ScenariosTestBuilder) CheckLog(expectedLogs string) *ScenariosTestBui
 	require.True(mtb.t, ok)
 	require.NotNil(mtb.t, mtb.executorLogger)
 	actualLog := stringLogger.String()
+	fmt.Println(actualLog)
+	fmt.Println("_______________________________")
+	fmt.Println(expectedLogs)
 	if actualLog != expectedLogs {
 		timestampStr := time.Now().Format("2006_01_02_15_04_05")
 		fileExpected, err := os.Create(fmt.Sprintf("executorLog_%s_expected.txt", timestampStr))

@@ -1,0 +1,10 @@
+[
+  "checkNoPayment",
+  "getNumArguments",
+  "mBufferFinish",
+  "mBufferGetArgument",
+  "mBufferSetBytes",
+  "mBufferStorageLoad",
+  "mBufferStorageStore",
+  "signalError"
+]

@@ -12,21 +12,20 @@
         },
         {
             "step": "scCall",
-            "txId": "check-hash",
+            "id": "check-hash",
             "tx": {
                 "from": "address:viewer",
                 "to": "sc:dns#00",
-                "value": "0",
                 "function": "nameHash",
                 "arguments": [
-                    "str:coolname0001.x"
+                    "0x636f6f6c6e616d65303030312e6e756d626174"
                 ],
                 "gasLimit": "50,000,000",
                 "gasPrice": "0"
             },
             "expect": {
                 "out": [
-                    "keccak256:str:coolname0001.numbat"
+                    "keccak256:0x636f6f6c6e616d65303030312e6e756d626174"
                 ],
                 "status": "",
                 "logs": "*",
@@ -36,21 +35,20 @@
         },
         {
             "step": "scCall",
-            "txId": "check-shard",
+            "id": "check-shard",
             "tx": {
                 "from": "address:viewer",
                 "to": "sc:dns#00",
-                "value": "0",
                 "function": "nameShard",
                 "arguments": [
-                    "str:coolname0001.x"
+                    "0x636f6f6c6e616d65303030312e6e756d626174"
                 ],
                 "gasLimit": "50,000,000",
                 "gasPrice": "0"
             },
             "expect": {
                 "out": [
-                    "0xaf"
+                    "0x87"
                 ],
                 "status": "",
                 "logs": "*",
@@ -60,14 +58,14 @@
         },
         {
             "step": "scCall",
-            "txId": "register-coolname0001",
+            "id": "register-coolname0001",
             "tx": {
                 "from": "address:cool_address",
                 "to": "sc:dns#87",
-                "value": "123,000",
+                "rewaValue": "123,000",
                 "function": "register",
                 "arguments": [
-                    "str:coolname0001.x"
+                    "0x636f6f6c6e616d65303030312e6e756d626174"
                 ],
                 "gasLimit": "40,000,000",
                 "gasPrice": "0"
@@ -75,21 +73,42 @@
             "expect": {
                 "out": [],
                 "status": "",
-                "logs": [],
+                "logs": [
+                    {
+                        "address": "address:cool_address",
+                        "endpoint": "str:SetUserName",
+                        "topics": [                            
+                            ""
+                        ],
+                        "data": []
+                    },
+                    {
+                        "address": "address:cool_address",
+                        "endpoint": "str:transferValueOnly",
+                        "topics": [
+                            "",
+                            "sc:dns#87"
+                        ],
+                        "data": [
+                            "str:AsyncCallback",
+                            "str:callBack",
+                            "0x00"
+                        ]
+                    }
+                ],
                 "gas": "*",
                 "refund": "*"
             }
         },
         {
             "step": "scCall",
-            "txId": "resolve-coolname0001-x-ok",
+            "id": "resolve-coolname0001",
             "tx": {
                 "from": "address:viewer",
                 "to": "sc:dns#87",
-                "value": "0",
                 "function": "resolve",
                 "arguments": [
-                    "str:coolname0001.x"
+                    "0x636f6f6c6e616d65303030312e6e756d626174"
                 ],
                 "gasLimit": "50,000,000",
                 "gasPrice": "0"
@@ -99,29 +118,7 @@
                     "address:cool_address"
                 ],
                 "status": "",
-                "logs": [],
-                "gas": "*",
-                "refund": "*"
-            }
-        },
-        {
-            "step": "scCall",
-            "txId": "resolve-coolname0001-numbat-err",
-            "tx": {
-                "from": "address:viewer",
-                "to": "sc:dns#87",
-                "value": "0",
-                "function": "resolve",
-                "arguments": [
-                    "str:coolname0001.numbat"
-                ],
-                "gasLimit": "50,000,000",
-                "gasPrice": "0"
-            },
-            "expect": {
-                "out": [],
-                "status": "",
-                "logs": [],
+                "logs": "*",
                 "gas": "*",
                 "refund": "*"
             }
@@ -132,15 +129,15 @@
                 "address:cool_address": {
                     "nonce": "*",
                     "balance": "123,000",
-                    "username": "str:coolname0001.x"
+                    "username": "0x636f6f6c6e616d65303030312e6e756d626174"
                 },
                 "sc:dns#87": {
                     "nonce": "*",
                     "balance": "123,000",
                     "storage": {
-                        "''registration_cost": "123,000",
-                        "''feat:register": "1",
-                        "''value_state|keccak256:str:coolname0001.numbat": "u8:5|address:cool_address"
+                        "str:registration_cost": "123,000",
+                        "str:feat:register": "1",
+                        "str:value_state|keccak256:0x636f6f6c6e616d65303030312e6e756d626174": "u8:2|address:cool_address"
                     },
                     "code": "file:../output/dns.wasm"
                 },

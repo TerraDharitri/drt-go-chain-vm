@@ -4,14 +4,13 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	builtinMath "math"
-	"math/big"
-
 	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 	logger "github.com/TerraDharitri/drt-go-chain-logger"
 	vmcommon "github.com/TerraDharitri/drt-go-chain-vm-common"
 	"github.com/TerraDharitri/drt-go-chain-vm/executor"
 	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	builtinMath "math"
+	"math/big"
 )
 
 var logRuntime = logger.GetOrCreate("vm/runtime")
@@ -236,7 +235,6 @@ func (context *runtimeContext) makeInstanceFromContractByteCode(contract []byte,
 	}
 	newInstance, err := context.vmExecutor.NewInstanceWithOptions(contract, options)
 	if err != nil {
-		fmt.Print("Errorddddddddddddddddddddddd %w", err)
 		context.iTracker.UnsetInstance()
 		logRuntime.Trace("instance creation", "from", "bytecode", "error", err)
 		return err

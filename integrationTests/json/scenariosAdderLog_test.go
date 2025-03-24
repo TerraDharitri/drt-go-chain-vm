@@ -16,49 +16,49 @@ GetPointsUsed: 3
 SetPointsUsed: 103
 VM hook end:   CheckNoPayment()
 VM hook begin: GetNumArguments()
-GetPointsUsed: 110
-GetPointsUsed: 110
-SetPointsUsed: 210
+GetPointsUsed: 111
+GetPointsUsed: 111
+SetPointsUsed: 211
 VM hook end:   GetNumArguments()
-VM hook begin: BigIntGetUnsignedArgument(0, -101)
-GetPointsUsed: 249
-GetPointsUsed: 249
-SetPointsUsed: 1249
-VM hook end:   BigIntGetUnsignedArgument(0, -101)
-VM hook begin: MBufferSetBytes(-102, 131097, 3)
-GetPointsUsed: 1289
-GetPointsUsed: 1289
-SetPointsUsed: 3289
-GetPointsUsed: 3289
-GetPointsUsed: 3289
-SetPointsUsed: 6289
-VM hook end:   MBufferSetBytes(-102, 131097, 3)
-VM hook begin: MBufferFromBigIntUnsigned(-103, -101)
-GetPointsUsed: 6333
-GetPointsUsed: 6333
-SetPointsUsed: 10333
-VM hook end:   MBufferFromBigIntUnsigned(-103, -101)
-VM hook begin: MBufferStorageStore(-102, -103)
-GetPointsUsed: 10345
-GetPointsUsed: 10345
-SetPointsUsed: 85345
-GetPointsUsed: 85345
-GetPointsUsed: 85345
-SetPointsUsed: 85345
-GetPointsUsed: 85345
-GetPointsUsed: 85345
-SetPointsUsed: 135345
-VM hook end:   MBufferStorageStore(-102, -103)
-GetPointsUsed: 135352
-GetPointsUsed: 135352
-GetPointsUsed: 135352
-GetPointsUsed: 135352
-GetPointsUsed: 135352
-GetPointsUsed: 135352
-GetPointsUsed: 135352
+VM hook begin: BigIntGetUnsignedArgument(0, -201)
+GetPointsUsed: 252
+GetPointsUsed: 252
+SetPointsUsed: 1252
+VM hook end:   BigIntGetUnsignedArgument(0, -201)
+VM hook begin: MBufferSetBytes(-202, 131097, 3)
+GetPointsUsed: 1292
+GetPointsUsed: 1292
+SetPointsUsed: 3292
+GetPointsUsed: 3292
+GetPointsUsed: 3292
+SetPointsUsed: 6292
+VM hook end:   MBufferSetBytes(-202, 131097, 3)
+VM hook begin: MBufferFromBigIntUnsigned(-203, -201)
+GetPointsUsed: 6336
+GetPointsUsed: 6336
+SetPointsUsed: 10336
+VM hook end:   MBufferFromBigIntUnsigned(-203, -201)
+VM hook begin: MBufferStorageStore(-202, -203)
+GetPointsUsed: 10348
+GetPointsUsed: 10348
+SetPointsUsed: 85348
+GetPointsUsed: 85348
+GetPointsUsed: 85348
+SetPointsUsed: 85348
+GetPointsUsed: 85348
+GetPointsUsed: 85348
+SetPointsUsed: 135348
+VM hook end:   MBufferStorageStore(-202, -203)
+GetPointsUsed: 135355
+GetPointsUsed: 135355
+GetPointsUsed: 135355
+GetPointsUsed: 135355
+GetPointsUsed: 135355
+GetPointsUsed: 135355
+GetPointsUsed: 135355
 Reset: true
 SetPointsUsed: 0
-SetGasLimit: 9223372036853566707
+SetGasLimit: 9223372036853523207
 SetBreakpointValue: 0
 HasFunction(getSum): true
 CallFunction(getSum):
@@ -68,50 +68,50 @@ GetPointsUsed: 3
 SetPointsUsed: 103
 VM hook end:   CheckNoPayment()
 VM hook begin: GetNumArguments()
-GetPointsUsed: 110
-GetPointsUsed: 110
-SetPointsUsed: 210
+GetPointsUsed: 111
+GetPointsUsed: 111
+SetPointsUsed: 211
 VM hook end:   GetNumArguments()
-VM hook begin: MBufferSetBytes(-101, 131097, 3)
-GetPointsUsed: 250
-GetPointsUsed: 250
-SetPointsUsed: 2250
-GetPointsUsed: 2250
-GetPointsUsed: 2250
-SetPointsUsed: 5250
-VM hook end:   MBufferSetBytes(-101, 131097, 3)
-VM hook begin: MBufferStorageLoad(-101, -102)
-GetPointsUsed: 5291
-GetPointsUsed: 5291
-SetPointsUsed: 6291
-GetPointsUsed: 6291
-GetPointsUsed: 6291
-SetPointsUsed: 21578
-VM hook end:   MBufferStorageLoad(-101, -102)
-VM hook begin: MBufferToBigIntUnsigned(-102, -103)
-GetPointsUsed: 21611
-GetPointsUsed: 21611
-SetPointsUsed: 25611
-VM hook end:   MBufferToBigIntUnsigned(-102, -103)
-VM hook begin: BigIntFinishUnsigned(-103)
-GetPointsUsed: 25622
-GetPointsUsed: 25622
-SetPointsUsed: 26622
-GetPointsUsed: 26622
-GetPointsUsed: 26622
-SetPointsUsed: 36622
-VM hook end:   BigIntFinishUnsigned(-103)
-GetPointsUsed: 36624
-GetPointsUsed: 36624
-GetPointsUsed: 36624
-GetPointsUsed: 36624
-GetPointsUsed: 36624
-GetPointsUsed: 36624
-GetPointsUsed: 36624
-GetPointsUsed: 36624
+VM hook begin: MBufferSetBytes(-201, 131097, 3)
+GetPointsUsed: 253
+GetPointsUsed: 253
+SetPointsUsed: 2253
+GetPointsUsed: 2253
+GetPointsUsed: 2253
+SetPointsUsed: 5253
+VM hook end:   MBufferSetBytes(-201, 131097, 3)
+VM hook begin: MBufferStorageLoad(-201, -202)
+GetPointsUsed: 5294
+GetPointsUsed: 5294
+SetPointsUsed: 6294
+GetPointsUsed: 6294
+GetPointsUsed: 6294
+SetPointsUsed: 21581
+VM hook end:   MBufferStorageLoad(-201, -202)
+VM hook begin: MBufferToBigIntUnsigned(-202, -203)
+GetPointsUsed: 21614
+GetPointsUsed: 21614
+SetPointsUsed: 25614
+VM hook end:   MBufferToBigIntUnsigned(-202, -203)
+VM hook begin: BigIntFinishUnsigned(-203)
+GetPointsUsed: 25625
+GetPointsUsed: 25625
+SetPointsUsed: 26625
+GetPointsUsed: 26625
+GetPointsUsed: 26625
+SetPointsUsed: 36625
+VM hook end:   BigIntFinishUnsigned(-203)
+GetPointsUsed: 36627
+GetPointsUsed: 36627
+GetPointsUsed: 36627
+GetPointsUsed: 36627
+GetPointsUsed: 36627
+GetPointsUsed: 36627
+GetPointsUsed: 36627
+GetPointsUsed: 36627
 Reset: true
 SetPointsUsed: 0
-SetGasLimit: 3790900
+SetGasLimit: 3747400
 SetBreakpointValue: 0
 HasFunction(add): true
 CallFunction(add):
@@ -121,65 +121,65 @@ GetPointsUsed: 3
 SetPointsUsed: 103
 VM hook end:   CheckNoPayment()
 VM hook begin: GetNumArguments()
-GetPointsUsed: 110
-GetPointsUsed: 110
-SetPointsUsed: 210
+GetPointsUsed: 111
+GetPointsUsed: 111
+SetPointsUsed: 211
 VM hook end:   GetNumArguments()
-VM hook begin: BigIntGetUnsignedArgument(0, -101)
-GetPointsUsed: 249
-GetPointsUsed: 249
-SetPointsUsed: 1249
-VM hook end:   BigIntGetUnsignedArgument(0, -101)
-VM hook begin: MBufferSetBytes(-102, 131097, 3)
-GetPointsUsed: 1289
-GetPointsUsed: 1289
-SetPointsUsed: 3289
-GetPointsUsed: 3289
-GetPointsUsed: 3289
-SetPointsUsed: 6289
-VM hook end:   MBufferSetBytes(-102, 131097, 3)
-VM hook begin: MBufferStorageLoad(-102, -103)
-GetPointsUsed: 6333
-GetPointsUsed: 6333
-SetPointsUsed: 7333
-GetPointsUsed: 7333
-GetPointsUsed: 7333
-SetPointsUsed: 22620
-VM hook end:   MBufferStorageLoad(-102, -103)
-VM hook begin: MBufferToBigIntUnsigned(-103, -104)
-GetPointsUsed: 22653
-GetPointsUsed: 22653
-SetPointsUsed: 26653
-VM hook end:   MBufferToBigIntUnsigned(-103, -104)
-VM hook begin: BigIntAdd(-104, -104, -101)
-GetPointsUsed: 26673
-GetPointsUsed: 26673
-SetPointsUsed: 28673
-VM hook end:   BigIntAdd(-104, -104, -101)
-VM hook begin: MBufferFromBigIntUnsigned(-105, -104)
-GetPointsUsed: 28712
-GetPointsUsed: 28712
-SetPointsUsed: 32712
-VM hook end:   MBufferFromBigIntUnsigned(-105, -104)
-VM hook begin: MBufferStorageStore(-102, -105)
-GetPointsUsed: 32724
-GetPointsUsed: 32724
-SetPointsUsed: 107724
-GetPointsUsed: 107724
-GetPointsUsed: 107724
-SetPointsUsed: 107724
-GetPointsUsed: 107724
-GetPointsUsed: 107724
-SetPointsUsed: 107724
-VM hook end:   MBufferStorageStore(-102, -105)
-GetPointsUsed: 107731
-GetPointsUsed: 107731
-GetPointsUsed: 107731
-GetPointsUsed: 107731
-GetPointsUsed: 107731
-GetPointsUsed: 107731
-GetPointsUsed: 107731
-GetPointsUsed: 107731
+VM hook begin: BigIntGetUnsignedArgument(0, -201)
+GetPointsUsed: 252
+GetPointsUsed: 252
+SetPointsUsed: 1252
+VM hook end:   BigIntGetUnsignedArgument(0, -201)
+VM hook begin: MBufferSetBytes(-202, 131097, 3)
+GetPointsUsed: 1292
+GetPointsUsed: 1292
+SetPointsUsed: 3292
+GetPointsUsed: 3292
+GetPointsUsed: 3292
+SetPointsUsed: 6292
+VM hook end:   MBufferSetBytes(-202, 131097, 3)
+VM hook begin: MBufferStorageLoad(-202, -203)
+GetPointsUsed: 6336
+GetPointsUsed: 6336
+SetPointsUsed: 7336
+GetPointsUsed: 7336
+GetPointsUsed: 7336
+SetPointsUsed: 22623
+VM hook end:   MBufferStorageLoad(-202, -203)
+VM hook begin: MBufferToBigIntUnsigned(-203, -204)
+GetPointsUsed: 22656
+GetPointsUsed: 22656
+SetPointsUsed: 26656
+VM hook end:   MBufferToBigIntUnsigned(-203, -204)
+VM hook begin: BigIntAdd(-204, -204, -201)
+GetPointsUsed: 26676
+GetPointsUsed: 26676
+SetPointsUsed: 28676
+VM hook end:   BigIntAdd(-204, -204, -201)
+VM hook begin: MBufferFromBigIntUnsigned(-205, -204)
+GetPointsUsed: 28715
+GetPointsUsed: 28715
+SetPointsUsed: 32715
+VM hook end:   MBufferFromBigIntUnsigned(-205, -204)
+VM hook begin: MBufferStorageStore(-202, -205)
+GetPointsUsed: 32727
+GetPointsUsed: 32727
+SetPointsUsed: 107727
+GetPointsUsed: 107727
+GetPointsUsed: 107727
+SetPointsUsed: 107727
+GetPointsUsed: 107727
+GetPointsUsed: 107727
+SetPointsUsed: 107727
+VM hook end:   MBufferStorageStore(-202, -205)
+GetPointsUsed: 107734
+GetPointsUsed: 107734
+GetPointsUsed: 107734
+GetPointsUsed: 107734
+GetPointsUsed: 107734
+GetPointsUsed: 107734
+GetPointsUsed: 107734
+GetPointsUsed: 107734
 Clean: true
 `
 
