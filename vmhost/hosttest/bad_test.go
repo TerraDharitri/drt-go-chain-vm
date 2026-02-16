@@ -9,9 +9,7 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-vm/executor"
 	contextmock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
 	test "github.com/TerraDharitri/drt-go-chain-vm/testcommon"
-	"github.com/TerraDharitri/drt-go-chain-vm/testcommon/testexecutor"
 	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
-	"github.com/TerraDharitri/drt-go-chain-vm/wasmer"
 	"github.com/TerraDharitri/drt-go-chain-vm/wasmer2"
 	"github.com/stretchr/testify/require"
 )
@@ -261,14 +259,6 @@ func TestBadContract_NoPanic_NonExistingFunction(t *testing.T) {
 				FunctionNotFound().
 				HasRuntimeErrorAndInfo(executor.ErrInvalidFunction.Error(), "thisDoesNotExist")
 		})
-}
-
-func TestBadContractExtra_LongIntLoop_Wasmer1(t *testing.T) {
-	if !testexecutor.IsWasmer1Allowed() {
-		t.Skip("run exclusively with wasmer1")
-	}
-
-	testBadContractExtraLongIntLoop(t, wasmer.ExecutorFactory())
 }
 
 func TestBadContractExtra_LongIntLoop_Wasmer2(t *testing.T) {

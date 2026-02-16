@@ -3,6 +3,8 @@ package hostCoretest
 import (
 	"testing"
 
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
 	contextmock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
 	"github.com/TerraDharitri/drt-go-chain-vm/testcommon"
 	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
@@ -40,5 +42,22 @@ func TestForbiddenOps_FloatingPoints(t *testing.T) {
 		WithAddress(newAddress).
 		AndAssertResults(func(_ *contextmock.BlockchainHookStub, verify *testcommon.VMOutputVerifier) {
 			verify.ContractInvalid()
+		})
+}
+
+func TestBarnardOpcodesActivation(t *testing.T) {
+	testcommon.BuildInstanceCreatorTest(t).
+		WithInput(testcommon.CreateTestContractCreateInputBuilder().
+			WithGasProvided(100000000).
+			WithContractCode(testcommon.GetTestSCCode("new-blockchain-hooks", "../../")).
+			Build()).
+		WithEnableEpochsHandler(&worldmock.EnableEpochsHandlerStub{
+			IsFlagEnabledCalled: func(flag core.EnableEpochFlag) bool {
+				return flag != vmhost.BarnardOpcodesFlag
+			},
+		}).
+		AndAssertResults(func(stubBlockchainHook *contextmock.BlockchainHookStub, verify *testcommon.VMOutputVerifier) {
+			verify.
+				ContractInvalid()
 		})
 }

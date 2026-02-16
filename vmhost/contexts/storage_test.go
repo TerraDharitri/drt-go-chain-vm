@@ -3,9 +3,10 @@ package contexts
 import (
 	"bytes"
 	"errors"
-	"github.com/TerraDharitri/drt-go-chain-core/core"
 	"math/big"
 	"testing"
+
+	"github.com/TerraDharitri/drt-go-chain-core/core"
 
 	"github.com/TerraDharitri/drt-go-chain-core/core/check"
 	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"

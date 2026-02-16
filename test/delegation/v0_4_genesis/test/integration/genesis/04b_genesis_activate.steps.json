@@ -3,10 +3,11 @@
     "steps": [
         {
             "step": "scCall",
-            "id": "activate-genesis-1",
+            "txId": "activate-genesis-1",
             "tx": {
-                "from": "''node_address__________________s1",
+                "from": "address:node_address",
                 "to": "sc:delegation",
+                "value": "0",
                 "function": "activateGenesis",
                 "arguments": [],
                 "gasLimit": "100,000,000",
@@ -18,13 +19,9 @@
                 "logs": [
                     {
                         "address": "sc:delegation",
-                        "endpoint": "str:activateGenesis",
-                        "topics": [
-                            "0x0000000000000000000000000000000000000000000000000000000000000003"
-                        ],
-                        "data": [
-                            "0x"
-                        ]
+                        "identifier": "0x0000000000000000000000000000000000000000000000000000000000000003",
+                        "topics": [],
+                        "data": "0x"
                     }
                 ],
                 "gas": "*",

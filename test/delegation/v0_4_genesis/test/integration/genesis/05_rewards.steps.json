@@ -3,19 +3,20 @@
     "steps": [
         {
             "step": "validatorReward",
-            "id": "validatorReward-1",
+            "txId": "validatorReward-1",
             "comment": "reward value proportional to stake to make it easier to check, 50% are fees",
             "tx": {
                 "to": "sc:delegation",
-                "rewaValue": "888,000,000"
+                "value": "888,000,000"
             }
         },
         {
             "step": "scCall",
-            "id": "get-total-cumulated-1",
+            "txId": "get-total-cumulated-1",
             "tx": {
-                "from": "''someone_______________________s1",
+                "from": "address:someone",
                 "to": "sc:delegation",
+                "value": "0",
                 "function": "getTotalCumulatedRewards",
                 "arguments": [],
                 "gasLimit": "1,000,000",
@@ -26,20 +27,21 @@
                     "888,000,000"
                 ],
                 "status": "",
-                "logs": "*",
+                "logs": [],
                 "gas": "*",
                 "refund": "*"
             }
         },
         {
             "step": "scCall",
-            "id": "claimable-0",
+            "txId": "claimable-0",
             "tx": {
-                "from": "''someone_______________________s1",
+                "from": "address:someone",
                 "to": "sc:delegation",
+                "value": "0",
                 "function": "getClaimableRewards",
                 "arguments": [
-                    "''node_address__________________s1"
+                    "address:node_address"
                 ],
                 "gasLimit": "1,000,000",
                 "gasPrice": "0"
@@ -49,20 +51,21 @@
                     "444,000,000"
                 ],
                 "status": "",
-                "logs": "*",
+                "logs": [],
                 "gas": "*",
                 "refund": "*"
             }
         },
         {
             "step": "scCall",
-            "id": "claimable-1",
+            "txId": "claimable-1",
             "tx": {
-                "from": "''someone_______________________s1",
+                "from": "address:someone",
                 "to": "sc:delegation",
+                "value": "0",
                 "function": "getClaimableRewards",
                 "arguments": [
-                    "''delegator_1___________________s1"
+                    "address:delegator1"
                 ],
                 "gasLimit": "1,000,000",
                 "gasPrice": "0"
@@ -72,20 +75,21 @@
                     "300,000,000"
                 ],
                 "status": "",
-                "logs": "*",
+                "logs": [],
                 "gas": "*",
                 "refund": "*"
             }
         },
         {
             "step": "scCall",
-            "id": "claimable-2",
+            "txId": "claimable-2",
             "tx": {
-                "from": "''someone_______________________s1",
+                "from": "address:someone",
                 "to": "sc:delegation",
+                "value": "0",
                 "function": "getClaimableRewards",
                 "arguments": [
-                    "''delegator_2___________________s1"
+                    "address:delegator2"
                 ],
                 "gasLimit": "1,000,000",
                 "gasPrice": "0"
@@ -95,17 +99,18 @@
                     "033,000,000"
                 ],
                 "status": "",
-                "logs": "*",
+                "logs": [],
                 "gas": "*",
                 "refund": "*"
             }
         },
         {
             "step": "scCall",
-            "id": "delegator 1 claim 1",
+            "txId": "delegator 1 claim 1",
             "tx": {
-                "from": "''delegator_1___________________s1",
+                "from": "address:delegator1",
                 "to": "sc:delegation",
+                "value": "0",
                 "function": "claimRewards",
                 "arguments": [],
                 "gasLimit": "1,000,000",
@@ -117,26 +122,11 @@
                 "logs": [
                     {
                         "address": "sc:delegation",
-                        "endpoint": "str:claimRewards",
+                        "identifier": "0x000000000000000000000000000000000000000000000000000000000000000a",
                         "topics": [
-                            "0x000000000000000000000000000000000000000000000000000000000000000a",
-                            "''delegator_1___________________s1"
+                            "address:delegator1"
                         ],
-                        "data": [
-                            "300,000,000"
-                        ]
-                    },
-                    {
-                        "address": "sc:delegation",
-                        "endpoint": "str:transferValueOnly",
-                        "topics": [                            
-                            "300,000,000",
-                            "address:delegator_1___________________s#31"
-                        ],
-                        "data": [
-                            "str:DirectCall",
-                            "str:delegation rewards claim"
-                        ]
+                        "data": "300,000,000"
                     }
                 ],
                 "gas": "*",
@@ -152,16 +142,16 @@
                     "nonce": "*",
                     "balance": "588,000,000",
                     "storage": "*",
-                    "code": "file:../../../output/delegation.wasm"
+                    "code": "file:../../../output/delegation_v0_4_genesis.wasm"
                 },
-                "''delegator_1___________________s1": {
+                "address:delegator1": {
                     "nonce": "*",
                     "balance": "300,000,000",
                     "storage": {},
                     "code": "",
                     "asyncCallData": "str:delegation rewards claim"
                 },
-                "''delegator_2___________________s1": {
+                "address:delegator2": {
                     "nonce": "*",
                     "balance": "0",
                     "storage": {},

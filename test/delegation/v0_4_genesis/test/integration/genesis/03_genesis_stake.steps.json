@@ -3,10 +3,11 @@
     "steps": [
         {
             "step": "scCall",
-            "id": "delegator 1 stake 1",
+            "txId": "delegator 1 stake 1",
             "tx": {
-                "from": "''delegator_1___________________s1",
+                "from": "address:delegator1",
                 "to": "sc:delegation",
+                "value": "0",
                 "function": "stakeGenesis",
                 "arguments": [
                     "300,000,000,000,000"
@@ -20,14 +21,11 @@
                 "logs": [
                     {
                         "address": "sc:delegation",
-                        "endpoint": "str:stakeGenesis",
+                        "identifier": "0x0000000000000000000000000000000000000000000000000000000000000001",
                         "topics": [
-                            "0x0000000000000000000000000000000000000000000000000000000000000001",
-                            "''delegator_1___________________s1"
+                            "address:delegator1"
                         ],
-                        "data": [
-                            "300,000,000,000,000"
-                        ]
+                        "data": "300,000,000,000,000"
                     }
                 ],
                 "gas": "*",
@@ -36,10 +34,11 @@
         },
         {
             "step": "scCall",
-            "id": "delegator 2 stake 1",
+            "txId": "delegator 2 stake 1",
             "tx": {
-                "from": "''delegator_2___________________s1",
+                "from": "address:delegator2",
                 "to": "sc:delegation",
+                "value": "0",
                 "function": "stakeGenesis",
                 "arguments": [
                     "033,000,000,000,000"
@@ -53,14 +52,11 @@
                 "logs": [
                     {
                         "address": "sc:delegation",
-                        "endpoint": "str:stakeGenesis",
+                        "identifier": "0x0000000000000000000000000000000000000000000000000000000000000001",
                         "topics": [
-                            "0x0000000000000000000000000000000000000000000000000000000000000001",
-                            "''delegator_2___________________s1"
+                            "address:delegator2"
                         ],
-                        "data": [
-                            "033,000,000,000,000"
-                        ]
+                        "data": "033,000,000,000,000"
                     }
                 ],
                 "gas": "*",
@@ -69,10 +65,11 @@
         },
         {
             "step": "scCall",
-            "id": "delegator 3 stake 1",
+            "txId": "delegator 3 stake 1",
             "tx": {
-                "from": "''delegator_3___________________s1",
+                "from": "address:delegator3",
                 "to": "sc:delegation",
+                "value": "0",
                 "function": "stakeGenesis",
                 "arguments": [
                     "111,000,000,000,000"
@@ -86,14 +83,11 @@
                 "logs": [
                     {
                         "address": "sc:delegation",
-                        "endpoint": "str:stakeGenesis",
+                        "identifier": "0x0000000000000000000000000000000000000000000000000000000000000001",
                         "topics": [
-                            "0x0000000000000000000000000000000000000000000000000000000000000001",
-                            "''delegator_3___________________s1"
+                            "address:delegator3"
                         ],
-                        "data": [
-                            "111,000,000,000,000"
-                        ]
+                        "data": "111,000,000,000,000"
                     }
                 ],
                 "gas": "*",

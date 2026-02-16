@@ -5,7 +5,7 @@
             "step": "setState",
             "newAddresses": [
                 {
-                    "creatorAddress": "''node_address__________________s1",
+                    "creatorAddress": "address:node_address",
                     "creatorNonce": "0",
                     "newAddress": "sc:delegation"
                 }
@@ -13,10 +13,11 @@
         },
         {
             "step": "scDeploy",
-            "id": "deploy-1",
+            "txId": "deploy-1",
             "tx": {
-                "from": "''node_address__________________s1",
-                "contractCode": "file:../../../output/delegation.wasm",
+                "from": "address:node_address",
+                "value": "0",
+                "contractCode": "file:../../../output/delegation_v0_4_genesis.wasm",
                 "arguments": [
                     "sc:auction",
                     "1",
@@ -30,17 +31,18 @@
             "expect": {
                 "out": [],
                 "status": "",
-                "logs": "*",
+                "logs": [],
                 "gas": "*",
                 "refund": "*"
             }
         },
         {
             "step": "scCall",
-            "id": "set-stake-per-node",
+            "txId": "set-stake-per-node",
             "tx": {
-                "from": "''node_address__________________s1",
+                "from": "address:node_address",
                 "to": "sc:delegation",
+                "value": "0",
                 "function": "setStakePerNode",
                 "arguments": [
                     "111,000,000,000,000"
@@ -51,17 +53,18 @@
             "expect": {
                 "out": [],
                 "status": "",
-                "logs": "*",
+                "logs": [],
                 "gas": "*",
                 "refund": "*"
             }
         },
         {
             "step": "scCall",
-            "id": "set-fee",
+            "txId": "set-fee",
             "tx": {
-                "from": "''node_address__________________s1",
+                "from": "address:node_address",
                 "to": "sc:delegation",
+                "value": "0",
                 "function": "setServiceFee",
                 "arguments": [
                     "5000"
@@ -72,26 +75,7 @@
             "expect": {
                 "out": [],
                 "status": "",
-                "logs": "*",
-                "gas": "*",
-                "refund": "*"
-            }
-        },
-        {
-            "step": "scCall",
-            "id": "enable-unstake",
-            "tx": {
-                "from": "''node_address__________________s1",
-                "to": "sc:delegation",
-                "function": "enableUnStake",
-                "arguments": [],
-                "gasLimit": "1,000,000",
-                "gasPrice": "0"
-            },
-            "expect": {
-                "out": [],
-                "status": "",
-                "logs": "*",
+                "logs": [],
                 "gas": "*",
                 "refund": "*"
             }

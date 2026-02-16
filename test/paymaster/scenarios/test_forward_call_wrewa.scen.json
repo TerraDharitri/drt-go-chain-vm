@@ -41,7 +41,7 @@
                     "storage": {
                         "str:wrappedRewaTokenId": "str:WREWA-123456"
                     },
-                    "code": "drtsc:../../wrewa-swap/output/dharitri-sc-wrewa-swap.drtsc.json"
+                    "code": "drtsc:../../wrewa-swap/output/dharitri-wrewa-swap-sc.drtsc.json"
                 }
             },
             "newAddresses": [
@@ -170,7 +170,7 @@
                     "storage": "*",
                     "owner": "*",
                     "nonce": "0",
-                    "code": "drtsc:../../wrewa-swap/output/dharitri-sc-wrewa-swap.drtsc.json"
+                    "code": "drtsc:../../wrewa-swap/output/dharitri-wrewa-swap-sc.drtsc.json"
                 },
                 "+": ""
             }

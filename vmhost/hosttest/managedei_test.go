@@ -425,7 +425,7 @@ func Test_ManagedRipemd160(t *testing.T) {
 }
 
 const blsCheckOK = "3e886a4c6e109a151f4105aee65a5192d150ef1fa68d3cd76964a0b086006dbe4324c989deb0e4416c6d6706db1b1910eb2732f08842fb4886067b9ed191109ac2188d76002d2e11da80a3f0ea89fee6b59c834cc478a6bd49cb8a193b1abb16@e96bd0f36b70c5ccc0c4396343bd7d8255b8a526c55fa1e218511fafe6539b8e@04725db195e37aa237cdbbda76270d4a229b6e7a3651104dc58c4349c0388e8546976fe54a04240530b99064e434c90f"
-const blsMultiSigOk = "9723bb054e8c79ef18dc24d329f84c7e6dbd43ee1a1064f1f7ecaf98be5695b1a62c78b530cfecb69304f07cefb76b02cdaed63cb2f62214971174f603704212d690f5ef76f1718ec1e920b00ac0792949d9f7371bbc5c9e054f040775ee9d06@6402df92cad7c9f0fb06381f66940266193c865ba6e90f08adbccc504913d4b8005b74b3210e38ba644f41b8e0af1519c9013791aaa798dd19536e3ddef1f9c49a83bab0521503f9aedf105cf32af421cf41f77ea7d26db4650a87ad0178f387@a7bd70d9eeb4ec0baff870335c6da592cb77aa1efd4a0b140e5f263a7ba346474aa2b5db2c407b47354febfc8bc1ab18157ce8d9a55aadf37e1c4ae4c4d7b1ae8e0498c520aebd2efac32ca82267c24ff3132006d14ae514282512935bf81a06@408ee8ebc5269599c9ecafcce6d7876f5fc7bbe3e86cf0bfa11d34df91c67451df7275ae8e399d34dd42d7172fb8f41605e16880497e1238e2e0d0855c331f5b42347984b6da36c8819f13fec7a6a3a0b6a55a5b269f19b80586381fcedff297@e13f11461d0e11f78dedd6cabfb4114516338f037e1cf8121bc842e74d434a1b728855a15267f5dbab7e31a1e903ee0959567817ab743f5bac57b782e184c98a554d092659fb7236bf1f5113a424aa42625608ce5646cae067e1a76576e72a01@message0@81c611c8ea8ba6c5f90207f9002e436e9cb97e927482fa755b46749dcf8d351c29756e34417e024687629c1cf0b4ec99"
+const blsMultiSigOk = "9723bb054e8c79ef18dc24d329f84c7e6dbd43ee1a1064f1f7ecaf98be5695b1a62c78b530cfecb69304f07cefb76b02cdaed63cb2f62214971174f603704212d690f5ef76f1718ec1e920b00ac0792949d9f7371bbc5c9e054f040775ee9d06@6402df92cad7c9f0fb06381f66940266193c865ba6e90f08adbccc504913d4b8005b74b3210e38ba644f41b8e0af1519c9013791aaa798dd19536e3ddef1f9c49a83bab0521503f9aedf105cf32af421cf41f77ea7d26db4650a87ad0178f387@a7bd70d9eeb4ec0baff870335c6da592cb77aa1efd4a0b140e5f263a7ba346474aa2b5db2c407b47354febfc8bc1ab18157ce8d9a55aadf37e1c4ae4c4d7b1ae8e0498c520aebd2efac32ca82267c24ff3132006d14ae514282512935bf81a06@408ee8ebc5269599c9ecafcce64727476f5fc7bbe3e86cf0bfa11d34df91c67451df7275ae8e399d34dd42d7172fb8f41605e16880497e1238e2e0d0855c331f5b42347984b6da36c8819f13fec7a6a3a0b6a55a5b269f19b80586381fcedff297@e13f11461d0e11f78dedd6cabfb4114516338f037e1cf8121bc842e74d434a1b728855a15267f5dbab7e31a1e903ee0959567817ab743f5bac57b782e184c98a554d092659fb7236bf1f5113a424aa42625608ce5646cae067e1a76576e72a01@message0@81c611c8ea8ba6c5f90207f9002e436e9cb97e927482fa755b46749dcf8d351c29756e34417e024687629c1cf0b4ec99"
 
 func blsMultiSigSplitString(t testing.TB, str string) ([][]byte, []byte, []byte) {
 	split := strings.Split(str, "@")
@@ -849,8 +849,8 @@ func Test_ManagedVerifyBLSMultiSig(t *testing.T) {
 			WithFunction("testFunction").
 			Build()).
 		AndAssertResults(func(world *worldmock.MockWorld, verify *test.VMOutputVerifier) {
-			verify.
-				Ok()
+			verify.ReturnCode(vmcommon.UserError)
+
 		})
 	assert.Nil(t, err)
 }
@@ -1468,6 +1468,71 @@ func TestBaseOpsAPI_NFTNonceOverflow(t *testing.T) {
 	assert.Nil(t, err)
 }
 
+func TestBaseOpsAPI_GetDCDTTokenType(t *testing.T) {
+	testConfig := makeTestConfig()
+
+	tokenValue := int64(100)
+	nonce := uint64(0)
+
+	_, err := test.BuildMockInstanceCallTest(t).
+		WithContracts(
+			test.CreateMockContract(test.ParentAddress).
+				WithBalance(testConfig.ParentBalance).
+				WithConfig(testConfig).
+				WithMethods(func(parentInstance *mock.InstanceMock, config interface{}) {
+					parentInstance.AddMockMethod("testFunction", func() *mock.InstanceMock {
+						host := parentInstance.Host
+						managed := host.ManagedTypes()
+
+						addressHandle := managed.NewManagedBufferFromBytes(test.ParentAddress)
+						tokenIDHandle := managed.NewManagedBufferFromBytes(test.DCDTTestTokenName)
+
+						typeHandle := managed.NewBigIntFromInt64(0)
+
+						vmhooks.ManagedGetDCDTTokenTypeWithHost(host,
+							addressHandle,
+							tokenIDHandle,
+							int64(nonce),
+							typeHandle)
+
+						typeValue, err := managed.GetBigInt(typeHandle)
+						if err != nil {
+							host.Runtime().SignalUserError(err.Error())
+							return parentInstance
+						}
+
+						require.Equal(t, uint64(core.NonFungible), typeValue.Uint64())
+
+						return parentInstance
+					})
+				}),
+		).
+		WithInput(test.CreateTestContractCallInputBuilder().
+			WithRecipientAddr(test.ParentAddress).
+			WithGasProvided(testConfig.GasProvided).
+			WithFunction("testFunction").
+			Build()).
+		WithSetup(func(host vmhost.VMHost, world *worldmock.MockWorld) {
+			createMockBuiltinFunctions(t, host, world)
+			setZeroCodeCosts(host)
+			err := world.BuiltinFuncs.SetTokenData(
+				test.ParentAddress,
+				test.DCDTTestTokenName,
+				nonce,
+				&dcdt.DCDigitalToken{
+					Value:      big.NewInt(tokenValue),
+					Type:       uint32(core.NonFungible),
+					Properties: dcdtconvert.MakeDCDTUserMetadataBytes(false),
+				})
+			assert.Nil(t, err)
+		}).
+		AndAssertResults(func(world *worldmock.MockWorld, verify *test.VMOutputVerifier) {
+			verify.
+				Ok()
+		})
+	assert.Nil(t, err)
+}
+
 func Test_ManagedGetCodeMetadata(t *testing.T) {
 	testConfig := baseTestConfig
 
@@ -1497,6 +1562,42 @@ func Test_ManagedGetCodeMetadata(t *testing.T) {
 							host.Runtime().SignalUserError("assert failed")
 							return parentInstance
 						}
+
+						return parentInstance
+					})
+				}),
+		).
+		WithInput(test.CreateTestContractCallInputBuilder().
+			WithRecipientAddr(test.ParentAddress).
+			WithGasProvided(testConfig.GasProvided).
+			WithFunction("testFunction").
+			Build()).
+		AndAssertResults(func(world *worldmock.MockWorld, verify *test.VMOutputVerifier) {
+			verify.
+				Ok()
+		})
+	assert.Nil(t, err)
+}
+
+func Test_ManagedGetCodeHash(t *testing.T) {
+	testConfig := baseTestConfig
+
+	codeHash := []byte("hash")
+
+	_, err := test.BuildMockInstanceCallTest(t).
+		WithContracts(
+			test.CreateMockContract(test.ParentAddress).
+				WithBalance(testConfig.ParentBalance).
+				WithConfig(testConfig).
+				WithCodeHash(codeHash).
+				WithMethods(func(parentInstance *mock.InstanceMock, config interface{}) {
+					parentInstance.AddMockMethod("testFunction", func() *mock.InstanceMock {
+						host := parentInstance.Host
+
+						output, err := vmhooks.ManagedGetCodeHashTyped(host, test.ParentAddress)
+						require.Nil(t, err, "failed to call GetCodeHash")
+
+						require.Equal(t, output, codeHash, "code hash value is incorrect")
 
 						return parentInstance
 					})
@@ -1637,6 +1738,185 @@ func Test_Direct_ManagedGetBackTransfers(t *testing.T) {
 		).
 		WithSetup(func(host vmhost.VMHost, world *worldmock.MockWorld) {
 			childAccount := world.AcctMap.GetAccount(test.ChildAddress)
+			_ = childAccount.SetTokenBalanceUint64(test.DCDTTestTokenName, 0, initialDCDTTokenBalance)
+			createMockBuiltinFunctions(t, host, world)
+			setZeroCodeCosts(host)
+		}).
+		WithInput(test.CreateTestContractCallInputBuilder().
+			WithRecipientAddr(test.ParentAddress).
+			WithGasProvided(testConfig.GasProvided).
+			WithFunction("callChild").
+			Build()).
+		AndAssertResults(func(world *worldmock.MockWorld, verify *test.VMOutputVerifier) {
+			verify.
+				Ok()
+		})
+	assert.Nil(t, err)
+}
+
+func Test_MultipleCalls_ManagedGetBackTransfers(t *testing.T) {
+	testConfig := makeTestConfig()
+	rewaBalance := big.NewInt(10)
+	rewaTransfer := big.NewInt(1)
+	initialDCDTTokenBalance := uint64(100)
+	testConfig.DCDTTokensToTransfer = 5
+	callsNumber := 2
+
+	_, err := test.BuildMockInstanceCallTest(t).
+		WithContracts(
+			test.CreateMockContract(test.ParentAddress).
+				WithBalance(testConfig.ParentBalance).
+				WithConfig(testConfig).
+				WithMethods(func(parentInstance *mock.InstanceMock, config interface{}) {
+					parentInstance.AddMockMethod("callChild", func() *mock.InstanceMock {
+						host := parentInstance.Host
+
+						for i := 0; i < callsNumber; i++ {
+							input := test.DefaultTestContractCallInput()
+							input.GasProvided = testConfig.GasProvidedToChild
+							input.CallerAddr = test.ParentAddress
+							input.RecipientAddr = test.ChildAddress
+							input.Function = "childFunction"
+							returnValue := contracts.ExecuteOnDestContextInMockContracts(host, input)
+							assert.Equal(t, int32(0), returnValue)
+						}
+
+						managedTypes := host.ManagedTypes()
+						dcdtTransfers, rewa := managedTypes.GetBackTransfers()
+						assert.Equal(t, callsNumber, len(dcdtTransfers))
+						for i := 0; i < callsNumber; i++ {
+							assert.Equal(t, test.DCDTTestTokenName, dcdtTransfers[i].DCDTTokenName)
+							assert.Equal(t, big.NewInt(0).SetUint64(testConfig.DCDTTokensToTransfer), dcdtTransfers[i].DCDTValue)
+						}
+						assert.Equal(t, big.NewInt(rewaTransfer.Int64()*int64(callsNumber)), rewa)
+						return parentInstance
+					})
+				}),
+			test.CreateMockContract(test.ChildAddress).
+				WithBalance(testConfig.ChildBalance).
+				WithConfig(testConfig).
+				WithMethods(func(parentInstance *mock.InstanceMock, config interface{}) {
+					parentInstance.AddMockMethod("childFunction", func() *mock.InstanceMock {
+						host := parentInstance.Host
+
+						valueBytes := rewaTransfer.Bytes()
+						err := host.Output().Transfer(
+							test.ParentAddress,
+							test.ChildAddress, 0, 0, big.NewInt(0).SetBytes(valueBytes), nil, []byte{}, vm.DirectCall)
+						assert.Nil(t, err)
+
+						transfer := &vmcommon.DCDTTransfer{
+							DCDTValue:      big.NewInt(int64(testConfig.DCDTTokensToTransfer)),
+							DCDTTokenName:  test.DCDTTestTokenName,
+							DCDTTokenType:  0,
+							DCDTTokenNonce: 0,
+						}
+
+						ret := vmhooks.TransferDCDTNFTExecuteWithTypedArgs(
+							host,
+							test.ParentAddress,
+							[]*vmcommon.DCDTTransfer{transfer},
+							int64(testConfig.GasProvidedToChild),
+							nil,
+							nil)
+						assert.Equal(t, ret, int32(0))
+
+						return parentInstance
+					})
+				}),
+		).
+		WithSetup(func(host vmhost.VMHost, world *worldmock.MockWorld) {
+			childAccount := world.AcctMap.GetAccount(test.ChildAddress)
+			childAccount.SetBalance(rewaBalance.Int64())
+			_ = childAccount.SetTokenBalanceUint64(test.DCDTTestTokenName, 0, initialDCDTTokenBalance)
+			createMockBuiltinFunctions(t, host, world)
+			setZeroCodeCosts(host)
+		}).
+		WithInput(test.CreateTestContractCallInputBuilder().
+			WithRecipientAddr(test.ParentAddress).
+			WithGasProvided(testConfig.GasProvided).
+			WithFunction("callChild").
+			Build()).
+		AndAssertResults(func(world *worldmock.MockWorld, verify *test.VMOutputVerifier) {
+			verify.
+				Ok()
+		})
+	assert.Nil(t, err)
+}
+
+func Test_MultipleCalls_MultipleReads_ManagedGetBackTransfers(t *testing.T) {
+	testConfig := makeTestConfig()
+	rewaBalance := big.NewInt(10)
+	rewaTransfer := big.NewInt(1)
+	initialDCDTTokenBalance := uint64(100)
+	testConfig.DCDTTokensToTransfer = 5
+	callsNumber := 2
+
+	_, err := test.BuildMockInstanceCallTest(t).
+		WithContracts(
+			test.CreateMockContract(test.ParentAddress).
+				WithBalance(testConfig.ParentBalance).
+				WithConfig(testConfig).
+				WithMethods(func(parentInstance *mock.InstanceMock, config interface{}) {
+					parentInstance.AddMockMethod("callChild", func() *mock.InstanceMock {
+						host := parentInstance.Host
+
+						for i := 0; i < callsNumber; i++ {
+							input := test.DefaultTestContractCallInput()
+							input.GasProvided = testConfig.GasProvidedToChild
+							input.CallerAddr = test.ParentAddress
+							input.RecipientAddr = test.ChildAddress
+							input.Function = "childFunction"
+							returnValue := contracts.ExecuteOnDestContextInMockContracts(host, input)
+							assert.Equal(t, int32(0), returnValue)
+
+							managedTypes := host.ManagedTypes()
+							dcdtTransfers, rewa := managedTypes.GetBackTransfers()
+							assert.Equal(t, 1, len(dcdtTransfers))
+							assert.Equal(t, test.DCDTTestTokenName, dcdtTransfers[0].DCDTTokenName)
+							assert.Equal(t, big.NewInt(0).SetUint64(testConfig.DCDTTokensToTransfer), dcdtTransfers[0].DCDTValue)
+							assert.Equal(t, rewaTransfer, rewa)
+						}
+
+						return parentInstance
+					})
+				}),
+			test.CreateMockContract(test.ChildAddress).
+				WithBalance(testConfig.ChildBalance).
+				WithConfig(testConfig).
+				WithMethods(func(parentInstance *mock.InstanceMock, config interface{}) {
+					parentInstance.AddMockMethod("childFunction", func() *mock.InstanceMock {
+						host := parentInstance.Host
+
+						valueBytes := rewaTransfer.Bytes()
+						err := host.Output().Transfer(
+							test.ParentAddress,
+							test.ChildAddress, 0, 0, big.NewInt(0).SetBytes(valueBytes), nil, []byte{}, vm.DirectCall)
+						assert.Nil(t, err)
+
+						transfer := &vmcommon.DCDTTransfer{
+							DCDTValue:      big.NewInt(int64(testConfig.DCDTTokensToTransfer)),
+							DCDTTokenName:  test.DCDTTestTokenName,
+							DCDTTokenType:  0,
+							DCDTTokenNonce: 0,
+						}
+
+						ret := vmhooks.TransferDCDTNFTExecuteWithTypedArgs(
+							host,
+							test.ParentAddress,
+							[]*vmcommon.DCDTTransfer{transfer},
+							int64(testConfig.GasProvidedToChild),
+							nil,
+							nil)
+						assert.Equal(t, ret, int32(0))
+
+						return parentInstance
+					})
+				}),
+		).
+		WithSetup(func(host vmhost.VMHost, world *worldmock.MockWorld) {
+			childAccount := world.AcctMap.GetAccount(test.ChildAddress)
+			childAccount.SetBalance(rewaBalance.Int64())
 			_ = childAccount.SetTokenBalanceUint64(test.DCDTTestTokenName, 0, initialDCDTTokenBalance)
 			createMockBuiltinFunctions(t, host, world)
 			setZeroCodeCosts(host)
@@ -1918,6 +2198,145 @@ func Test_ManagedMultiTransferDCDTNFTExecuteByUser_ReturnOnFail(t *testing.T) {
 
 			verify.
 				ExecutionFailed()
+		})
+	assert.Nil(t, err)
+}
+
+func Test_ManagedManagedGetAllTransfersCallValue_NoCallValue(t *testing.T) {
+	testConfig := baseTestConfig
+
+	initialDCDTTokenBalance := uint64(100)
+	transferDCDTTokenValue := big.NewInt(5)
+
+	_, err := test.BuildMockInstanceCallTest(t).
+		WithContracts(
+			test.CreateMockContract(test.ChildAddress).
+				WithBalance(testConfig.ChildBalance).
+				WithConfig(testConfig).
+				WithCodeMetadata([]byte{0, (1 << vmcommon.MetadataPayableBySC) | (1 << vmcommon.MetadataPayable)}).
+				WithMethods(func(parentInstance *mock.InstanceMock, config interface{}) {}),
+			test.CreateMockContract(test.ParentAddress).
+				WithBalance(testConfig.ParentBalance).
+				WithConfig(testConfig).
+				WithMethods(func(parentInstance *mock.InstanceMock, config interface{}) {
+					parentInstance.AddMockMethod("testFunction", func() *mock.InstanceMock {
+						host := parentInstance.Host
+
+						transfers, err := vmhooks.ManagedGetAllTransfersCallValueTyped(host)
+						assert.Nil(t, err)
+
+						assert.Equal(t, 1, len(transfers))
+						assert.Equal(t, test.DCDTTestTokenName, transfers[0].DCDTTokenName)
+						assert.Equal(t, transferDCDTTokenValue, transfers[0].DCDTValue)
+
+						return parentInstance
+					})
+				}),
+		).
+		WithSetup(func(host vmhost.VMHost, world *worldmock.MockWorld) {
+			createMockBuiltinFunctions(t, host, world)
+
+			parentAccount := world.AcctMap.GetAccount(test.ParentAddress)
+			_ = parentAccount.SetTokenBalanceUint64(test.DCDTTestTokenName, 0, initialDCDTTokenBalance)
+		}).
+		WithInput(test.CreateTestContractCallInputBuilder().
+			WithRecipientAddr(test.ParentAddress).
+			WithGasProvided(testConfig.GasProvided).
+			WithFunction("testFunction").
+			WithDCDTTokenName(test.DCDTTestTokenName).
+			WithDCDTValue(transferDCDTTokenValue).
+			Build()).
+		AndAssertResults(func(world *worldmock.MockWorld, verify *test.VMOutputVerifier) {
+			verify.
+				Ok()
+		})
+	assert.Nil(t, err)
+}
+
+func Test_ManagedManagedGetAllTransfersCallValue_NoTokenNoCallValue(t *testing.T) {
+	testConfig := baseTestConfig
+
+	_, err := test.BuildMockInstanceCallTest(t).
+		WithContracts(
+			test.CreateMockContract(test.ChildAddress).
+				WithBalance(testConfig.ChildBalance).
+				WithConfig(testConfig).
+				WithCodeMetadata([]byte{0, (1 << vmcommon.MetadataPayableBySC) | (1 << vmcommon.MetadataPayable)}).
+				WithMethods(func(parentInstance *mock.InstanceMock, config interface{}) {}),
+			test.CreateMockContract(test.ParentAddress).
+				WithBalance(testConfig.ParentBalance).
+				WithConfig(testConfig).
+				WithMethods(func(parentInstance *mock.InstanceMock, config interface{}) {
+					parentInstance.AddMockMethod("testFunction", func() *mock.InstanceMock {
+						host := parentInstance.Host
+
+						transfers, err := vmhooks.ManagedGetAllTransfersCallValueTyped(host)
+						assert.Nil(t, err)
+
+						assert.Equal(t, 0, len(transfers))
+
+						return parentInstance
+					})
+				}),
+		).
+		WithInput(test.CreateTestContractCallInputBuilder().
+			WithRecipientAddr(test.ParentAddress).
+			WithGasProvided(testConfig.GasProvided).
+			WithFunction("testFunction").
+			Build()).
+		AndAssertResults(func(world *worldmock.MockWorld, verify *test.VMOutputVerifier) {
+			verify.
+				Ok()
+		})
+	assert.Nil(t, err)
+}
+
+func Test_ManagedManagedGetAllTransfersCallValue_OnlyCallValue(t *testing.T) {
+	testConfig := baseTestConfig
+
+	initialBalance := int64(100)
+	transferValue := int64(5)
+
+	_, err := test.BuildMockInstanceCallTest(t).
+		WithContracts(
+			test.CreateMockContract(test.ChildAddress).
+				WithBalance(testConfig.ChildBalance).
+				WithConfig(testConfig).
+				WithCodeMetadata([]byte{0, (1 << vmcommon.MetadataPayableBySC) | (1 << vmcommon.MetadataPayable)}).
+				WithMethods(func(parentInstance *mock.InstanceMock, config interface{}) {}),
+			test.CreateMockContract(test.ParentAddress).
+				WithBalance(testConfig.ParentBalance).
+				WithConfig(testConfig).
+				WithMethods(func(parentInstance *mock.InstanceMock, config interface{}) {
+					parentInstance.AddMockMethod("testFunction", func() *mock.InstanceMock {
+						host := parentInstance.Host
+
+						transfers, err := vmhooks.ManagedGetAllTransfersCallValueTyped(host)
+						assert.Nil(t, err)
+
+						assert.Equal(t, 1, len(transfers))
+						assert.Equal(t, []byte("REWA-000000"), transfers[0].DCDTTokenName)
+						assert.Equal(t, big.NewInt(transferValue), transfers[0].DCDTValue)
+
+						return parentInstance
+					})
+				}),
+		).
+		WithSetup(func(host vmhost.VMHost, world *worldmock.MockWorld) {
+			createMockBuiltinFunctions(t, host, world)
+
+			parentAccount := world.AcctMap.GetAccount(test.ParentAddress)
+			parentAccount.SetBalance(initialBalance)
+		}).
+		WithInput(test.CreateTestContractCallInputBuilder().
+			WithRecipientAddr(test.ParentAddress).
+			WithGasProvided(testConfig.GasProvided).
+			WithFunction("testFunction").
+			WithCallValue(transferValue).
+			Build()).
+		AndAssertResults(func(world *worldmock.MockWorld, verify *test.VMOutputVerifier) {
+			verify.
+				Ok()
 		})
 	assert.Nil(t, err)
 }

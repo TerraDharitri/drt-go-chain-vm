@@ -1,17 +1,15 @@
 module github.com/TerraDharitri/drt-go-chain-vm
 
-go 1.20
-
-replace github.com/gogo/protobuf => github.com/TerraDharitri/protobuf v0.0.1
+go 1.23
 
 require (
-	github.com/TerraDharitri/drt-go-bigint v0.0.2
-	github.com/TerraDharitri/drt-go-chain-core v0.0.5
-	github.com/TerraDharitri/drt-go-chain-crypto v0.0.5
-	github.com/TerraDharitri/drt-go-chain-logger v0.0.3
-	github.com/TerraDharitri/drt-go-chain-scenario v0.0.5
-	github.com/TerraDharitri/drt-go-chain-storage v0.0.5
-	github.com/TerraDharitri/drt-go-chain-vm-common v0.0.4
+	github.com/TerraDharitri/drt-go-bigint v0.0.3
+	github.com/TerraDharitri/drt-go-chain-core v1.0.1
+	github.com/TerraDharitri/drt-go-chain-crypto v1.0.0
+	github.com/TerraDharitri/drt-go-chain-logger v1.0.0
+	github.com/TerraDharitri/drt-go-chain-scenario v1.0.0
+	github.com/TerraDharitri/drt-go-chain-storage v1.0.0
+	github.com/TerraDharitri/drt-go-chain-vm-common v1.0.0
 	github.com/awalterschulze/gographviz v2.0.3+incompatible
 	github.com/btcsuite/btcd/btcec/v2 v2.3.2
 	github.com/btcsuite/btcd/chaincfg/chainhash v1.0.1

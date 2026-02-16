@@ -64,7 +64,7 @@ func TestFuzzDex_v0_1(t *testing.T) {
 	err := pfe.init(
 		&fuzzDexExecutorInitArgs{
 			wrewaTokenId:            "WREWA-abcdef",
-			moaTokenId:              "MOA-abcdef",
+			moaTokenId:              " MOA-abcdef",
 			busdTokenId:             "BUSD-abcdef",
 			wemeLpTokenId:           "WEMELP-abcdef",
 			webuLpTokenId:           "WEBULP-abcdef",
