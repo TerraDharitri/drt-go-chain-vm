@@ -40,6 +40,7 @@ type ScenariosTestBuilder struct {
 	folder              string
 	singleFile          string
 	exclusions          []string
+	pathReplacements    map[string]string
 	executorLogger      executorwrapper.ExecutorLogger
 	executorFactory     executor.ExecutorAbstractFactory
 	enableEpochsHandler vmcommon.EnableEpochsHandler
@@ -53,6 +54,7 @@ func ScenariosTest(t *testing.T) *ScenariosTestBuilder {
 		t:                   t,
 		folder:              "",
 		singleFile:          "",
+		pathReplacements:    make(map[string]string),
 		executorLogger:      nil,
 		executorFactory:     nil,
 		enableEpochsHandler: worldmock.EnableEpochsHandlerStubAllFlags(),
@@ -75,6 +77,13 @@ func (mtb *ScenariosTestBuilder) File(fileName string) *ScenariosTestBuilder {
 func (mtb *ScenariosTestBuilder) Exclude(path string) *ScenariosTestBuilder {
 	mtb.exclusions = append(mtb.exclusions, path)
 	return mtb
+}
+
+// ReplacePath allows a test to override the path to a contract, as expressed in a denali test.
+// This is very helpful when running the same scenarios on multiple contracts.
+func (fr *ScenariosTestBuilder) ReplacePath(pathInTest, actualPath string) *ScenariosTestBuilder {
+	fr.pathReplacements[pathInTest] = actualPath
+	return fr
 }
 
 // WithExecutorLogs sets a StringLogger
@@ -124,14 +133,19 @@ func (mtb *ScenariosTestBuilder) Run() *ScenariosTestBuilder {
 			mtb.executorFactory)
 	}
 
-	executor := scenexec.NewScenarioExecutor(vmBuilder)
-	defer executor.Close()
+	scenarioExecutor := scenexec.NewScenarioExecutor(vmBuilder)
+	defer scenarioExecutor.Close()
 
-	executor.World.EnableEpochsHandler = mtb.enableEpochsHandler
+	scenarioExecutor.World.EnableEpochsHandler = mtb.enableEpochsHandler
+
+	fileResolver := scenio.NewDefaultFileResolver()
+	for pathInTest, actualPath := range mtb.pathReplacements {
+		fileResolver.ReplacePath(pathInTest, actualPath)
+	}
 
 	runner := scenio.NewScenarioController(
-		executor,
-		scenio.NewDefaultFileResolver(),
+		scenarioExecutor,
+		fileResolver,
 		vmBuilder.GetVMType(),
 	)
 
@@ -157,7 +171,7 @@ func (mtb *ScenariosTestBuilder) Run() *ScenariosTestBuilder {
 // CheckNoError does an assert for the containing error
 func (mtb *ScenariosTestBuilder) CheckNoError() *ScenariosTestBuilder {
 	if mtb.currentError != nil {
-		mtb.t.Error(mtb.currentError)
+	mtb.t.Fatalf("Scenario execution failed:\nType: %T\nFull Error:\n%+v\n", mtb.currentError, mtb.currentError)
 	}
 	return mtb
 }
@@ -174,9 +188,6 @@ func (mtb *ScenariosTestBuilder) CheckLog(expectedLogs string) *ScenariosTestBui
 	require.True(mtb.t, ok)
 	require.NotNil(mtb.t, mtb.executorLogger)
 	actualLog := stringLogger.String()
-	fmt.Println(actualLog)
-	fmt.Println("_______________________________")
-	fmt.Println(expectedLogs)
 	if actualLog != expectedLogs {
 		timestampStr := time.Now().Format("2006_01_02_15_04_05")
 		fileExpected, err := os.Create(fmt.Sprintf("executorLog_%s_expected.txt", timestampStr))

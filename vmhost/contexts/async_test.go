@@ -5,6 +5,8 @@ import (
 	"math/big"
 	"testing"
 
+	"github.com/TerraDharitri/drt-go-chain-vm/wasmer2"
+
 	"github.com/TerraDharitri/drt-go-chain-core/data/vm"
 	"github.com/TerraDharitri/drt-go-chain-core/marshal"
 	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
@@ -18,7 +20,6 @@ import (
 	"github.com/TerraDharitri/drt-go-chain-vm/testcommon/testexecutor"
 	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
 	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/vmhooks"
-	"github.com/TerraDharitri/drt-go-chain-vm/wasmer"
 	"github.com/stretchr/testify/require"
 )
 
@@ -58,7 +59,8 @@ func initializeVMAndWasmerAsyncContextWithBuiltIn(tb testing.TB, isBuiltinFunc b
 	gasSchedule := config.MakeGasMapForTests()
 	gasCostConfig, err := config.CreateGasConfig(gasSchedule)
 	require.Nil(tb, err)
-	wasmer.SetOpcodeCosts(gasCostConfig.WASMOpcodeCost)
+	wasmerExecutor, _ := wasmer2.CreateExecutor()
+	wasmerExecutor.SetOpcodeCosts(gasCostConfig.WASMOpcodeCost)
 
 	host := &contextmock.VMHostMock{
 		EnableEpochsHandlerField: &worldmock.EnableEpochsHandlerStub{},

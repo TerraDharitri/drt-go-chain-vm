@@ -17,8 +17,6 @@ endif
 
 test:
 	go clean -cache -testcache
-	VMEXECUTOR="wasmer1" go test ./...
-	go clean -cache -testcache
 	VMEXECUTOR="wasmer2" go test ./...
 
 test-w1: clean
@@ -142,7 +140,7 @@ ifndef SANDBOX
 	$(error SANDBOX variable is undefined)
 endif
 	rm -rf ${SANDBOX}/sc-delegation-rs
-	git clone --depth=1 --branch=main https://github.com/TerraDharitri/drt-sc-delegation.git ${SANDBOX}/sc-delegation-rs
+	git clone --depth=1 --branch=main https://github.com/TerraDharitri/sc-delegation-rs.git ${SANDBOX}/sc-delegation-rs
 	rm -rf ${SANDBOX}/sc-delegation-rs/.git
 	drtpy contract build ${SANDBOX}/sc-delegation-rs
 	drtpy contract test --directory="tests" ${SANDBOX}/sc-delegation-rs
@@ -154,7 +152,7 @@ ifndef SANDBOX
 	$(error SANDBOX variable is undefined)
 endif
 	rm -rf ${SANDBOX}/sc-dns-rs
-	git clone --depth=1 --branch=main https://github.com/TerraDharitri/drt-sc-dns.git ${SANDBOX}/sc-dns-rs
+	git clone --depth=1 --branch=main https://github.com/TerraDharitri/sc-dns-rs.git ${SANDBOX}/sc-dns-rs
 	rm -rf ${SANDBOX}/sc-dns-rs/.git
 	drtpy contract build ${SANDBOX}/sc-dns-rs
 	drtpy contract test --directory="tests" ${SANDBOX}/sc-dns-rs
@@ -198,3 +196,9 @@ run-lint:
 	bin/golangci-lint run --max-issues-per-linter 0 --max-same-issues 0 --timeout=2m
 
 lint: lint-install run-lint
+
+ci-local:
+	make test
+	TESTS_TO_RUN=$$(go list ./... | grep -v /integrationTests/ | grep -v /fuzz/); \
+	go test -short -cover -coverprofile=coverage.txt -covermode=atomic -v $$TESTS_TO_RUN
+	golangci-lint run --timeout 10m0s --max-issues-per-linter 0 --max-same-issues 0 --print-issued-lines

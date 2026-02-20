@@ -9,7 +9,6 @@ import (
 	contextmock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
 	test "github.com/TerraDharitri/drt-go-chain-vm/testcommon"
 	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
-	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/contexts"
 	"github.com/TerraDharitri/drt-go-chain-vm/wasmer2"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -241,10 +240,6 @@ func TestWASMMemories_MultipleMemories(t *testing.T) {
 }
 
 func TestWASMMemories_ResetContent(t *testing.T) {
-	if !contexts.WarmInstancesEnabled {
-		t.Skip("test only relevant with warm instances")
-	}
-
 	testCase := test.BuildInstanceCallTest(t).
 		WithContracts(
 			test.CreateInstanceContract(test.ParentAddress).
@@ -271,10 +266,6 @@ func TestWASMMemories_ResetContent(t *testing.T) {
 }
 
 func TestWASMMemories_ResetDataInitializers(t *testing.T) {
-	if !contexts.WarmInstancesEnabled {
-		t.Skip("test only relevant with warm instances")
-	}
-
 	testCase := test.BuildInstanceCallTest(t).
 		WithContracts(
 			test.CreateInstanceContract(test.ParentAddress).

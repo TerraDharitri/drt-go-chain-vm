@@ -16,7 +16,6 @@ import (
 	gasSchedules "github.com/TerraDharitri/drt-go-chain-vm/scenario/gasSchedules"
 	"github.com/TerraDharitri/drt-go-chain-vm/testcommon"
 	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
-	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/contexts"
 	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/hostCore"
 	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/mock"
 	"github.com/stretchr/testify/assert"
@@ -49,9 +48,6 @@ func Test_RunERC20BenchmarkFail(t *testing.T) {
 }
 
 func Test_WarmInstancesMemoryUsage(t *testing.T) {
-	if !contexts.WarmInstancesEnabled {
-		t.Skip("this test is only relevant with warm instances")
-	}
 	if testing.Short() {
 		t.Skip("not a short test")
 	}
@@ -60,9 +56,6 @@ func Test_WarmInstancesMemoryUsage(t *testing.T) {
 }
 
 func Test_WarmInstancesFuzzyMemoryUsage(t *testing.T) {
-	if !contexts.WarmInstancesEnabled {
-		t.Skip("this test is only relevant with warm instances")
-	}
 	if testing.Short() {
 		t.Skip("not a short test")
 	}

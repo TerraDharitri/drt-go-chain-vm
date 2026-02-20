@@ -6,7 +6,7 @@
             "id": "claim",
             "tx": {
                 "from": "address:dns_owner",
-                "to": "sc:dns#87",
+                "to": "sc:dns#af",
                 "function": "claim",
                 "arguments": [],
                 "gasLimit": "50,000,000",
@@ -17,7 +17,7 @@
                 "status": "",
                 "logs": [
                     {
-                        "address": "sc:dns#87",
+                        "address": "sc:dns#af",
                         "endpoint": "str:transferValueOnly",
                         "topics": [                            
                             "123,000",
@@ -43,7 +43,7 @@
                     "code": "",
                     "asyncCallData": "str:dns claim"
                 },
-                "sc:dns#87": {
+                "sc:dns#af": {
                     "nonce": "*",
                     "balance": "0",
                     "storage": "*",

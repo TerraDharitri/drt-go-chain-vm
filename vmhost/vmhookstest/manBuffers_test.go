@@ -5,10 +5,14 @@ import (
 	"math/big"
 	"testing"
 
+	"github.com/TerraDharitri/drt-go-chain-core/core"
+	"github.com/TerraDharitri/drt-go-chain-scenario/worldmock"
 	vmMath "github.com/TerraDharitri/drt-go-chain-vm/math"
 	contextmock "github.com/TerraDharitri/drt-go-chain-vm/mock/context"
 	test "github.com/TerraDharitri/drt-go-chain-vm/testcommon"
 	"github.com/TerraDharitri/drt-go-chain-vm/vmhost"
+	"github.com/TerraDharitri/drt-go-chain-vm/vmhost/vmhooks"
+	"github.com/stretchr/testify/assert"
 
 	twoscomplement "github.com/TerraDharitri/drt-go-bigint/twos-complement"
 )
@@ -327,4 +331,118 @@ func TestManBuffers_StorageLoad(t *testing.T) {
 				ReturnData(lastRandomBuffer, lastRandomKey).
 				Storage(storage...)
 		})
+}
+
+func TestManBuffers_Ints_WithNoBarnardOpcodesFlag(t *testing.T) {
+	parentBalance := int64(100000)
+	gasProvided := uint64(100000)
+
+	_, err := test.BuildMockInstanceCallTest(t).
+		WithContracts(
+			test.CreateMockContract(test.ParentAddress).
+				WithBalance(parentBalance).
+				WithMethods(func(instanceMock *contextmock.InstanceMock, config interface{}) {
+					instanceMock.AddMockMethod("test", func() *contextmock.InstanceMock {
+						host := instanceMock.Host
+						instance := contextmock.GetMockInstance(host)
+						managedTypes := host.ManagedTypes()
+						hooks := vmhooks.NewVMHooksImpl(host)
+
+						sourceBuffer := managedTypes.NewManagedBufferFromBytes([]byte{0x00, 0xff, 0x00, 0xff, 0x00, 0xff, 0x00, 0xff})
+
+						bigIntDest := managedTypes.NewBigIntFromInt64(0)
+						result := hooks.MBufferToBigIntUnsigned(sourceBuffer, bigIntDest)
+						assert.True(t, result == 0)
+
+						bigIntResult, err := managedTypes.GetBigInt(bigIntDest)
+						assert.Nil(t, err)
+						assert.True(t, bigIntResult.Cmp(big.NewInt(0x00_ff_00_ff_00_ff_00_ff)) == 0)
+
+						result = hooks.MBufferToBigIntSigned(sourceBuffer, bigIntDest)
+						assert.True(t, result == 0)
+
+						bigIntResult, err = managedTypes.GetBigInt(bigIntDest)
+						assert.Nil(t, err)
+						assert.True(t, bigIntResult.Cmp(big.NewInt(0x00_ff_00_ff_00_ff_00_ff)) == 0)
+
+						return instance
+					})
+				})).
+		WithInput(test.CreateTestContractCallInputBuilder().
+			WithRecipientAddr(test.ParentAddress).
+			WithGasProvided(gasProvided).
+			WithFunction("test").
+			Build()).
+		WithSetup(func(host vmhost.VMHost, world *worldmock.MockWorld) {
+			enableEpochsHandler := host.EnableEpochsHandler().(*worldmock.EnableEpochsHandlerStub)
+			enableEpochsHandler.IsFlagEnabledCalled = func(flag core.EnableEpochFlag) bool {
+				return flag != vmhost.BarnardOpcodesFlag
+			}
+		}).
+		AndAssertResults(func(world *worldmock.MockWorld, verify *test.VMOutputVerifier) {
+			verify.Ok().
+				GasRemaining(gasProvided-35).
+				GasUsed(test.ParentAddress, 35)
+		})
+	assert.Nil(t, err)
+}
+
+func TestManBuffers_Ints_WithBarnardOpcodesFlag(t *testing.T) {
+	parentBalance := int64(100000)
+	gasProvided := uint64(100000)
+
+	_, err := test.BuildMockInstanceCallTest(t).
+		WithContracts(
+			test.CreateMockContract(test.ParentAddress).
+				WithBalance(parentBalance).
+				WithMethods(func(instanceMock *contextmock.InstanceMock, config interface{}) {
+					instanceMock.AddMockMethod("test", func() *contextmock.InstanceMock {
+						host := instanceMock.Host
+						instance := contextmock.GetMockInstance(host)
+						managedTypes := host.ManagedTypes()
+						hooks := vmhooks.NewVMHooksImpl(host)
+
+						sourceBuffer := managedTypes.NewManagedBufferFromBytes([]byte{0x00, 0xff, 0x00, 0xff, 0x00, 0xff, 0x00, 0xff})
+
+						bigIntDest := managedTypes.NewBigIntFromInt64(0)
+						result := hooks.MBufferToBigIntUnsigned(sourceBuffer, bigIntDest)
+						assert.True(t, result == 0)
+
+						bigIntResult, err := managedTypes.GetBigInt(bigIntDest)
+						assert.Nil(t, err)
+						assert.True(t, bigIntResult.Cmp(big.NewInt(0x00_ff_00_ff_00_ff_00_ff)) == 0)
+
+						result = hooks.MBufferToBigIntSigned(sourceBuffer, bigIntDest)
+						assert.True(t, result == 0)
+
+						bigIntResult, err = managedTypes.GetBigInt(bigIntDest)
+						assert.Nil(t, err)
+						assert.True(t, bigIntResult.Cmp(big.NewInt(0x00_ff_00_ff_00_ff_00_ff)) == 0)
+
+						smallInt := hooks.MBufferToSmallIntSigned(sourceBuffer)
+						assert.True(t, smallInt == 0x00_ff_00_ff_00_ff_00_ff)
+
+						smallInt = hooks.MBufferToSmallIntUnsigned(sourceBuffer)
+						assert.True(t, smallInt == 0x00_ff_00_ff_00_ff_00_ff)
+
+						return instance
+					})
+				})).
+		WithInput(test.CreateTestContractCallInputBuilder().
+			WithRecipientAddr(test.ParentAddress).
+			WithGasProvided(gasProvided).
+			WithFunction("test").
+			Build()).
+		WithSetup(func(host vmhost.VMHost, world *worldmock.MockWorld) {
+			enableEpochsHandler := host.EnableEpochsHandler().(*worldmock.EnableEpochsHandlerStub)
+			enableEpochsHandler.IsFlagEnabledCalled = func(flag core.EnableEpochFlag) bool {
+				return true
+			}
+		}).
+		AndAssertResults(func(world *worldmock.MockWorld, verify *test.VMOutputVerifier) {
+			verify.Ok().
+				GasRemaining(gasProvided-69).
+				GasUsed(test.ParentAddress, 69)
+		})
+	assert.Nil(t, err)
 }
