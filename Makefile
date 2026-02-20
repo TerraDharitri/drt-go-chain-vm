@@ -197,8 +197,9 @@ run-lint:
 
 lint: lint-install run-lint
 
-ci-local:
-	make test
-	TESTS_TO_RUN=$$(go list ./... | grep -v /integrationTests/ | grep -v /fuzz/); \
-	go test -short -cover -coverprofile=coverage.txt -covermode=atomic -v $$TESTS_TO_RUN
-	golangci-lint run --timeout 10m0s --max-issues-per-linter 0 --max-same-issues 0 --print-issued-lines
+# ci-local:
+# 	make test
+# 	TESTS_TO_RUN=$$(go list ./... | grep -v /integrationTests/ | grep -v /fuzz/); \
+# 	go test -short -cover -coverprofile=coverage.txt -covermode=atomic -v $$TESTS_TO_RUN
+# 	golangci-lint run --timeout 10m0s --max-issues-per-linter 0 --max-same-issues 0 --print-issued-lines
+	
