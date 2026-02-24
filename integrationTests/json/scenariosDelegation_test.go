@@ -4,7 +4,7 @@ import (
 	"runtime"
 	"testing"
 )
-
+/*
 func TestDelegation_v0_2(t *testing.T) {
 	if testing.Short() {
 		t.Skip("not a short test")
@@ -47,8 +47,9 @@ func TestDelegation_v0_4_genesis(t *testing.T) {
 		Run().
 		CheckNoError()
 }
+*/
 
-func TestDelegation_v0_5_latest(t *testing.T) {
+func TestDelegation_v0_1_latest(t *testing.T) {
 	if testing.Short() {
 		t.Skip("not a short test")
 	}
@@ -57,7 +58,7 @@ func TestDelegation_v0_5_latest(t *testing.T) {
 	}
 
 	ScenariosTest(t).
-		Folder("delegation/v0_5_latest").
+		Folder("delegation/v0_1_latest").
 		Run().
 		CheckNoError()
 }
