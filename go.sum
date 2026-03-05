@@ -1,5 +1,7 @@
 github.com/TerraDharitri/drt-go-bigint v0.0.3 h1:08875rT1Yi99AIPnuojaD0VZBEue2q1ElAOC5H5+JU4=
 github.com/TerraDharitri/drt-go-bigint v0.0.3/go.mod h1:JsPQQjC0BUlfRkTttj0N7RTKjK1RQoMDOZsx++ah1WA=
+github.com/TerraDharitri/drt-go-chain-core v1.0.1 h1:k0B3DZNYJwE/NmibEQBVi/TxDm5Ij1Poo2HOv6HcMMM=
+github.com/TerraDharitri/drt-go-chain-core v1.0.1/go.mod h1:dppf7NEpCEr/YrKYrRCnyVLsehIVnXSWMU4cikdL2/Q=
 github.com/TerraDharitri/drt-go-chain-core v1.0.2 h1:TRZObngjCHU9hL8Tqbpt57lHWwljmN2RGDGYSmq8LBo=
 github.com/TerraDharitri/drt-go-chain-core v1.0.2/go.mod h1:dppf7NEpCEr/YrKYrRCnyVLsehIVnXSWMU4cikdL2/Q=
 github.com/TerraDharitri/drt-go-chain-crypto v1.0.0 h1:WxdvBkBt/kuUzofzFKYIZLok/otu51mD2iFCCnXadmQ=
