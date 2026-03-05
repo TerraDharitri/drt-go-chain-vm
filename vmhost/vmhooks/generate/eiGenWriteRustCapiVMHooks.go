@@ -71,9 +71,9 @@ impl dharitri_chain_vm_executor::VMHooksLegacy for CapiVMHooks {
 
 func writeRustFnCallArguments(firstArgs string, funcMetadata *EIFunction) string {
 	var sb strings.Builder
-	sb.WriteString(fmt.Sprintf("(%s", firstArgs))
+	fmt.Fprintf(&sb, "(%s", firstArgs)
 	for _, arg := range funcMetadata.Arguments {
-		sb.WriteString(fmt.Sprintf(", %s", rustCapiConvertArg(arg)))
+		fmt.Fprintf(&sb, ", %s", rustCapiConvertArg(arg))
 	}
 	sb.WriteString(")")
 	return sb.String()

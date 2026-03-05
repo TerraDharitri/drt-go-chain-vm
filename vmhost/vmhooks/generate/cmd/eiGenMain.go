@@ -272,6 +272,7 @@ func copyFile(from, to string) {
 	if err != nil {
 		log.Fatal(err)
 	}
+	//nolint:errcheck
 	defer original.Close()
 
 	// Create new file
@@ -279,6 +280,7 @@ func copyFile(from, to string) {
 	if err != nil {
 		log.Fatal(err)
 	}
+	//nolint:errcheck
 	defer new.Close()
 
 	//This will copy

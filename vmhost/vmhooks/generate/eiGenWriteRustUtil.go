@@ -99,9 +99,9 @@ func cgoFuncPointerFieldName(funcMetadata *EIFunction) string {
 
 func writeRustFnDeclarationArguments(firstArgs string, funcMetadata *EIFunction, argType func(EIType) string, resultType func(*EIFunctionResult) string) string {
 	var sb strings.Builder
-	sb.WriteString(fmt.Sprintf("(%s", firstArgs))
+	fmt.Fprintf(&sb,"(%s", firstArgs)
 	for _, arg := range funcMetadata.Arguments {
-		sb.WriteString(fmt.Sprintf(", %s: %s", snakeCase(arg.Name), argType(arg.Type)))
+		fmt.Fprintf(&sb, ", %s: %s", snakeCase(arg.Name), argType(arg.Type))
 	}
 	sb.WriteString(")")
 	sb.WriteString(resultType(funcMetadata.Result))

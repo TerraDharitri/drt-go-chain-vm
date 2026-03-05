@@ -23,6 +23,7 @@ func WriteWASMOpcodeCostConfigHelpers(out *eiGenWriter) {
 	if err != nil {
 		panic(err)
 	}
+	//nolint:errcheck
 	defer readFile.Close()
 
 	fileScanner := bufio.NewScanner(readFile)

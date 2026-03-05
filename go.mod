@@ -4,7 +4,7 @@ go 1.23
 
 require (
 	github.com/TerraDharitri/drt-go-bigint v0.0.3
-	github.com/TerraDharitri/drt-go-chain-core v1.0.1
+	github.com/TerraDharitri/drt-go-chain-core v1.0.2
 	github.com/TerraDharitri/drt-go-chain-crypto v1.0.0
 	github.com/TerraDharitri/drt-go-chain-logger v1.0.0
 	github.com/TerraDharitri/drt-go-chain-scenario v1.0.0

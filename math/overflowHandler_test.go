@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-var expectedErr = errors.New("expected error")
+var errExpected = errors.New("expected error")
 
 func TestOverflowHandler_AddInt64(t *testing.T) {
 	t.Parallel()
@@ -50,17 +50,17 @@ func TestOverflowHandler_AddInt64(t *testing.T) {
 	})
 	t.Run("error already set, should not perform add", func(t *testing.T) {
 		handler := NewOverflowHandler()
-		handler.err = expectedErr
+		handler.err = errExpected
 
 		t.Run("overflow occurs", func(t *testing.T) {
 			sum := handler.AddInt64(-math.MaxInt64+2, -4) // overflow occurs
 			require.Equal(t, int64(math.MaxInt64), sum)
-			require.ErrorIs(t, handler.Error(), expectedErr) // not the overflow error as the sum was not performed
+			require.ErrorIs(t, handler.Error(), errExpected) // not the overflow error as the sum was not performed
 		})
 		t.Run("no overflow occurs", func(t *testing.T) {
 			sum := handler.AddInt64(0, 0)
 			require.Equal(t, int64(math.MaxInt64), sum)
-			require.ErrorIs(t, handler.Error(), expectedErr)
+			require.ErrorIs(t, handler.Error(), errExpected)
 		})
 	})
 }
@@ -88,17 +88,17 @@ func TestOverflowHandler_MulInt64(t *testing.T) {
 	})
 	t.Run("error already set, should not perform multiply", func(t *testing.T) {
 		handler := NewOverflowHandler()
-		handler.err = expectedErr
+		handler.err = errExpected
 
 		t.Run("overflow occurs", func(t *testing.T) {
 			product := handler.MulInt64(maxEvenInt64/2, 3) // overflow occurs
 			require.Equal(t, int64(math.MaxInt64), product)
-			require.ErrorIs(t, handler.Error(), expectedErr) // not the overflow error as the sum was not performed
+			require.ErrorIs(t, handler.Error(), errExpected) // not the overflow error as the sum was not performed
 		})
 		t.Run("no overflow occurs", func(t *testing.T) {
 			product := handler.MulInt64(1, 1)
 			require.Equal(t, int64(math.MaxInt64), product)
-			require.ErrorIs(t, handler.Error(), expectedErr)
+			require.ErrorIs(t, handler.Error(), errExpected)
 		})
 	})
 }

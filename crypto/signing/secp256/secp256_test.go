@@ -83,6 +83,7 @@ func TestSecp256_VerifySecp256r1(t *testing.T) {
 
 	sk, _ := GenPrivateKeyR1()
 
+	//nolint:staticcheck
 	key := elliptic.MarshalCompressed(elliptic.P256(), sk.PublicKey.X, sk.PublicKey.Y)
 	sig, _ := SignMessage(msg, sk)
 
