@@ -948,6 +948,7 @@ func (context *VMHooksImpl) AddEC(
 		return
 	}
 
+	//nolint:staticcheck
 	if !ec.IsOnCurve(x1, y1) || !ec.IsOnCurve(x2, y2) {
 		context.FailExecution(vmhost.ErrPointNotOnCurve)
 		return
@@ -958,6 +959,7 @@ func (context *VMHooksImpl) AddEC(
 		context.FailExecution(err)
 		return
 	}
+	//nolint:staticcheck
 	xResultAdd, yResultAdd := ec.Add(x1, y1, x2, y2)
 	xResult.Set(xResultAdd)
 	yResult.Set(yResultAdd)
@@ -1000,6 +1002,7 @@ func (context *VMHooksImpl) DoubleEC(
 		context.FailExecution(vmhost.ErrNoBigIntUnderThisHandle)
 		return
 	}
+	//nolint:staticcheck
 	if !ec.IsOnCurve(x, y) {
 		context.FailExecution(vmhost.ErrPointNotOnCurve)
 		return
@@ -1010,7 +1013,7 @@ func (context *VMHooksImpl) DoubleEC(
 		context.FailExecution(err)
 		return
 	}
-
+	//nolint:staticcheck
 	xResultDouble, yResultDouble := ec.Double(x, y)
 	xResult.Set(xResultDouble)
 	yResult.Set(yResultDouble)
@@ -1056,7 +1059,7 @@ func (context *VMHooksImpl) IsOnCurveEC(
 		context.FailExecution(err)
 		return -1
 	}
-
+    //nolint:staticcheck
 	if ec.IsOnCurve(x, y) {
 		return 1
 	}
@@ -1184,8 +1187,9 @@ func commonScalarBaseMultEC(
 		FailExecution(host, err)
 		return 1
 	}
-
+	//nolint:staticcheck
 	xResultSBM, yResultSBM := ec.ScalarBaseMult(data)
+	//nolint:staticcheck
 	if !ec.IsOnCurve(xResultSBM, yResultSBM) {
 		FailExecution(host, vmhost.ErrPointNotOnCurve)
 		return 1
@@ -1323,6 +1327,7 @@ func commonScalarMultEC(
 		FailExecution(host, vmhost.ErrNoBigIntUnderThisHandle)
 		return 1
 	}
+	//nolint:staticcheck
 	if !ec.IsOnCurve(x, y) {
 		FailExecution(host, vmhost.ErrPointNotOnCurve)
 		return 1
@@ -1333,8 +1338,9 @@ func commonScalarMultEC(
 		FailExecution(host, err)
 		return 1
 	}
-
+	//nolint:staticcheck
 	xResultSM, yResultSM := ec.ScalarMult(x, y, data)
+	//nolint:staticcheck
 	if !ec.IsOnCurve(xResultSM, yResultSM) {
 		FailExecution(host, vmhost.ErrPointNotOnCurve)
 		return 1
@@ -1434,6 +1440,7 @@ func commonMarshalEC(
 	if err != nil {
 		return nil, err
 	}
+	//nolint:staticcheck
 	if !ec.IsOnCurve(x, y) {
 		return nil, vmhost.ErrPointNotOnCurve
 	}
@@ -1445,7 +1452,7 @@ func commonMarshalEC(
 	if err != nil {
 		return nil, err
 	}
-
+	//nolint:staticcheck
 	result := elliptic.Marshal(ec, x, y)
 	return result, nil
 }
@@ -1538,6 +1545,7 @@ func commonMarshalCompressedEC(host vmhost.VMHost,
 	if err != nil || x == nil || y == nil {
 		return nil, vmhost.ErrNoBigIntUnderThisHandle
 	}
+	//nolint:staticcheck
 	if !ec.IsOnCurve(x, y) {
 		return nil, vmhost.ErrPointNotOnCurve
 	}
@@ -1670,8 +1678,9 @@ func commonUnmarshalEC(
 		FailExecution(host, err)
 		return 1
 	}
-
+	//nolint:staticcheck
 	xResultU, yResultU := elliptic.Unmarshal(ec, data)
+	//nolint:staticcheck
 	if xResultU == nil || yResultU == nil || !ec.IsOnCurve(xResultU, yResultU) {
 		FailExecution(host, vmhost.ErrPointNotOnCurve)
 		return 1
@@ -1801,6 +1810,7 @@ func commonUnmarshalCompressedEC(
 	}
 
 	xResultUC, yResultUC := elliptic.UnmarshalCompressed(ec, data)
+	//nolint:staticcheck
 	if xResultUC == nil || yResultUC == nil || !ec.IsOnCurve(xResultUC, yResultUC) {
 		FailExecution(host, vmhost.ErrPointNotOnCurve)
 		return 1
@@ -1910,6 +1920,7 @@ func commonGenerateEC(
 	}
 
 	ioReader := managedType.GetRandReader()
+	//nolint:staticcheck
 	result, xPubKeyGK, yPubKeyGK, err := elliptic.GenerateKey(ec, ioReader)
 	if err != nil {
 		return nil, err

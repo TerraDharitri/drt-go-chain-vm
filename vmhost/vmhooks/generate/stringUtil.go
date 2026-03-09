@@ -20,6 +20,7 @@ func snakeCase(camelCase string) string {
 	// because they are given in all-caps, which makes it impossible to detect their boundaries
 	// e.g. "createDCDTNFT" becomes "createDcdtNft" in this step, so that the underscores can inserted properly
 	for _, knownAcronym := range knownAcronyms {
+		//nolint:staticcheck
 		camelCase = strings.Replace(camelCase, strings.ToUpper(knownAcronym), upperInitial(knownAcronym), -1)
 	}
 

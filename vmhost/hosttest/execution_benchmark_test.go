@@ -106,6 +106,7 @@ func runERC20Benchmark(tb testing.TB, nTransfers int, nRuns int, failTransaction
 			vmOutput, err := host.RunSmartContractCall(transferInput)
 			require.Nil(tb, err)
 			require.NotNil(tb, vmOutput)
+			//nolint:staticcheck
 			if !(failTransaction && r%2 == 0) {
 				require.Equal(tb, vmcommon.Ok, vmOutput.ReturnCode)
 				require.Equal(tb, "", vmOutput.ReturnMessage)

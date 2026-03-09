@@ -79,6 +79,7 @@ func (pfe *fuzzDelegationExecutor) unStake(delegatorIndex int, stake *big.Int) e
 	if err != nil {
 		return err
 	}
+	//nolint:staticcheck
 	if output.ReturnCode == vmcommon.Ok {
 		pfe.log("unStake, delegator: %d", delegatorIndex)
 	} else if output.ReturnCode == vmcommon.OutOfGas {
