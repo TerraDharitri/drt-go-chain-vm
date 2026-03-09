@@ -1130,6 +1130,7 @@ func extractOuptutTransferCalls(vmOutput *vmcommon.VMOutput, crossShardEdges []*
 						"gas limit", outputTransfer.GasLimit,
 						"callType", callType,
 						"data", contexts.DebugCallIDAsString(outputTransfer.Data))
+					//nolint:staticcheck						
 					if callType == vm.AsynchronousCall {
 						encodedArgs = outputTransfer.Data
 					} else if callType == vm.AsynchronousCallBack {

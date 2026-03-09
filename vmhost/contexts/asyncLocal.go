@@ -255,7 +255,7 @@ func (context *asyncContext) createCallbackInput(
 	}
 
 	arguments := context.getArgumentsForCallback(vmOutput, destinationErr)
-
+	//nolint:staticcheck
 	returnWithError := false
 	if destinationErr != nil || vmOutput.ReturnCode != vmcommon.Ok {
 		returnWithError = true

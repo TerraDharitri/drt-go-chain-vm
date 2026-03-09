@@ -290,66 +290,78 @@ func CreateTestContractCallInputBuilder() *ContractCallInputBuilder {
 
 // WithRecipientAddr provides the recepient address of ContractCallInputBuilder
 func (contractInput *ContractCallInputBuilder) WithRecipientAddr(address []byte) *ContractCallInputBuilder {
+	//nolint:staticcheck
 	contractInput.ContractCallInput.RecipientAddr = address
 	return contractInput
 }
 
 // WithCallerAddr provides the caller address of ContractCallInputBuilder
 func (contractInput *ContractCallInputBuilder) WithCallerAddr(address []byte) *ContractCallInputBuilder {
+	//nolint:staticcheck
 	contractInput.ContractCallInput.CallerAddr = address
 	return contractInput
 }
 
 // WithCallValue provides the value transferred to the called contract
 func (contractInput *ContractCallInputBuilder) WithCallValue(value int64) *ContractCallInputBuilder {
+	//nolint:staticcheck
+	//nolint:staticcheck
 	contractInput.ContractCallInput.CallValue = big.NewInt(value)
 	return contractInput
 }
 
 // WithGasProvided provides the gas of ContractCallInputBuilder
 func (contractInput *ContractCallInputBuilder) WithGasProvided(gas uint64) *ContractCallInputBuilder {
+	//nolint:staticcheck
 	contractInput.ContractCallInput.VMInput.GasProvided = gas
 	return contractInput
 }
 
 // WithGasLocked provides the locked gas of ContractCallInputBuilder
 func (contractInput *ContractCallInputBuilder) WithGasLocked(gas uint64) *ContractCallInputBuilder {
+	//nolint:staticcheck
 	contractInput.ContractCallInput.VMInput.GasLocked = gas
 	return contractInput
 }
 
 // WithFunction provides the function to be called for ContractCallInputBuilder
 func (contractInput *ContractCallInputBuilder) WithFunction(function string) *ContractCallInputBuilder {
+	//nolint:staticcheck
 	contractInput.ContractCallInput.Function = function
 	return contractInput
 }
 
 // WithArguments provides the arguments to be called for ContractCallInputBuilder
 func (contractInput *ContractCallInputBuilder) WithArguments(arguments ...[]byte) *ContractCallInputBuilder {
+	//nolint:staticcheck
 	contractInput.ContractCallInput.VMInput.Arguments = arguments
 	return contractInput
 }
 
 // WithAsyncArguments provides the async arguments to be called for ContractCallInputBuilder
 func (contractInput *ContractCallInputBuilder) WithAsyncArguments(arguments *vmcommon.AsyncArguments) *ContractCallInputBuilder {
+	//nolint:staticcheck
 	contractInput.ContractCallInput.VMInput.AsyncArguments = arguments
 	return contractInput
 }
 
 // WithCallType provides the arguments to be called for ContractCallInputBuilder
 func (contractInput *ContractCallInputBuilder) WithCallType(callType vm.CallType) *ContractCallInputBuilder {
+	//nolint:staticcheck
 	contractInput.ContractCallInput.VMInput.CallType = callType
 	return contractInput
 }
 
 // WithCurrentTxHash provides the CurrentTxHash for ContractCallInputBuilder
 func (contractInput *ContractCallInputBuilder) WithCurrentTxHash(txHash []byte) *ContractCallInputBuilder {
+	//nolint:staticcheck
 	contractInput.ContractCallInput.CurrentTxHash = txHash
 	return contractInput
 }
 
 // WithPrevTxHash provides the PrevTxHash for ContractCallInputBuilder
 func (contractInput *ContractCallInputBuilder) WithPrevTxHash(txHash []byte) *ContractCallInputBuilder {
+	//nolint:staticcheck
 	contractInput.ContractCallInput.PrevTxHash = txHash
 	return contractInput
 }
@@ -404,36 +416,42 @@ func CreateTestContractCreateInputBuilder() *ContractCreateInputBuilder {
 
 // WithGasProvided provides the GasProvided for a ContractCreateInputBuilder
 func (contractInput *ContractCreateInputBuilder) WithGasProvided(gas uint64) *ContractCreateInputBuilder {
+	//nolint:staticcheck
 	contractInput.ContractCreateInput.GasProvided = gas
 	return contractInput
 }
 
 // WithContractCode provides the ContractCode for a ContractCreateInputBuilder
 func (contractInput *ContractCreateInputBuilder) WithContractCode(code []byte) *ContractCreateInputBuilder {
+	//nolint:staticcheck
 	contractInput.ContractCreateInput.ContractCode = code
 	return contractInput
 }
 
 // WithContractCodeMetadata provides the ContractCodeMetadata for a ContractCreateInputBuilder
 func (contractInput *ContractCreateInputBuilder) WithContractCodeMetadata(codemetadata []byte) *ContractCreateInputBuilder {
+	//nolint:staticcheck
 	contractInput.ContractCreateInput.ContractCodeMetadata = codemetadata
 	return contractInput
 }
 
 // WithCallerAddr provides the CallerAddr for a ContractCreateInputBuilder
 func (contractInput *ContractCreateInputBuilder) WithCallerAddr(address []byte) *ContractCreateInputBuilder {
+	//nolint:staticcheck
 	contractInput.ContractCreateInput.CallerAddr = address
 	return contractInput
 }
 
 // WithCallValue provides the CallValue for a ContractCreateInputBuilder
 func (contractInput *ContractCreateInputBuilder) WithCallValue(callValue int64) *ContractCreateInputBuilder {
+	//nolint:staticcheck
 	contractInput.ContractCreateInput.CallValue = big.NewInt(callValue)
 	return contractInput
 }
 
 // WithArguments provides the Arguments for a ContractCreateInputBuilder
 func (contractInput *ContractCreateInputBuilder) WithArguments(arguments ...[]byte) *ContractCreateInputBuilder {
+	//nolint:staticcheck
 	contractInput.ContractCreateInput.Arguments = arguments
 	return contractInput
 }

@@ -64,6 +64,7 @@ func (context *asyncContext) complete() error {
 	}
 
 	currentCallID := context.GetCallID()
+	//nolint:staticcheck
 	if context.callType == vm.AsynchronousCall {
 		vmOutput := context.childResults
 		isCallbackComplete, _, err := context.callCallback(currentCallID, vmOutput, nil)
