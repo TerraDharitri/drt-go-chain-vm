@@ -380,7 +380,7 @@ func readRuntimeConfigFromArguments(host vmhost.VMHost, runtimeConfigsForCalls m
 
 	arguments := host.Runtime().Arguments()
 	callType := host.Runtime().GetVMInput().CallType
-
+	//nolint:staticcheck
 	if callType == vm.DirectCall {
 		argIndexes = syncCallArgIndexes
 	} else if callType == vm.AsynchronousCall {
@@ -396,7 +396,7 @@ func readRuntimeConfigFromArguments(host vmhost.VMHost, runtimeConfigsForCalls m
 			if runtimeConfig == nil {
 				panic("runtimeConfig loaded is nil")
 			}
-
+			//nolint:staticcheck
 			if runtimeConfig.edgeType == Async {
 				runtimeConfig.edgeType = Callback
 			} else if runtimeConfig.edgeType == AsyncCrossShard {

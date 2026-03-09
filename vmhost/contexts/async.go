@@ -371,6 +371,7 @@ func (context *asyncContext) SetContextCallback(callbackName string, data []byte
 func (context *asyncContext) SetAsyncArgumentsForCall(input *vmcommon.ContractCallInput) {
 	newCallID := context.generateNewCallID()
 	context.incrementCallsCounter()
+	//nolint:staticcheck
 	input.VMInput.AsyncArguments = &vmcommon.AsyncArguments{
 		CallID:       newCallID,
 		CallerCallID: context.GetCallID(),
@@ -383,6 +384,7 @@ func (context *asyncContext) SetAsyncArgumentsForCallback(
 	asyncCall *vmhost.AsyncCall,
 	gasAccumulated uint64) {
 	newCallID := context.generateNewCallID()
+	//nolint:staticcheck
 	input.VMInput.AsyncArguments = &vmcommon.AsyncArguments{
 		CallID:                       newCallID,
 		CallerCallID:                 asyncCall.CallID,
@@ -1040,5 +1042,6 @@ func DebugCallIDAsString(arr []byte) string {
 	if len(arr) > 3 {
 		return "[" + string(arr)[:5] + "...]"
 	}
+	//nolint:staticcheck
 	return fmt.Sprint(arr)
 }

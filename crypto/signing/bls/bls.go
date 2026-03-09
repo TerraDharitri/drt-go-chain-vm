@@ -6,7 +6,7 @@ import (
 	mclMultiSig "github.com/TerraDharitri/drt-go-chain-crypto/signing/mcl/multisig"
 	"github.com/TerraDharitri/drt-go-chain-crypto/signing/mcl/singlesig"
 	"github.com/TerraDharitri/drt-go-chain-crypto/signing/multisig"
-	crypto "github.com/TerraDharitri/drt-go-chain-crypto"
+	 "github.com/TerraDharitri/drt-go-chain-crypto"
 )
 
 type bls struct {

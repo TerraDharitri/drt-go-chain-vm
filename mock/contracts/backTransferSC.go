@@ -126,7 +126,7 @@ func BackTransfer_ChildCallback(instanceMock *mock.InstanceMock, config interfac
 			nil,
 			nil)
 		if ret != 0 {
-			host.Runtime().FailExecution(fmt.Errorf("Transfer DCDT failed"))
+			host.Runtime().FailExecution(fmt.Errorf("transfer DCDT failed"))
 		}
 
 		return instance
